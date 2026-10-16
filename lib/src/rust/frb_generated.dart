@@ -12,6 +12,8 @@ import 'api/init.dart';
 import 'api/keys.dart';
 import 'api/kyber.dart';
 import 'api/message.dart';
+import 'api/pq_bundle.dart';
+import 'api/pqid.dart';
 import 'api/prekey.dart';
 import 'api/sealed_sender.dart';
 import 'api/session.dart';
@@ -78,7 +80,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.13.0';
 
   @override
-  int get rustContentHash => 1630330622;
+  int get rustContentHash => -1175889965;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -302,6 +304,41 @@ abstract class RustLibApi extends BaseApi {
     required PlaintextContent that,
   });
 
+  PqIdentityKeyPair crateApiPqidPqIdentityKeyPairDeserialize({
+    required List<int> bytes,
+  });
+
+  PqIdentityKeyPair crateApiPqidPqIdentityKeyPairGenerate();
+
+  PqIdentityKey crateApiPqidPqIdentityKeyPairPublicKey({
+    required PqIdentityKeyPair that,
+  });
+
+  Uint8List crateApiPqidPqIdentityKeyPairSerialize({
+    required PqIdentityKeyPair that,
+  });
+
+  PqSignature crateApiPqidPqIdentityKeyPairSign({
+    required PqIdentityKeyPair that,
+    required List<int> message,
+  });
+
+  PqIdentityKey crateApiPqidPqIdentityKeyDeserialize({
+    required List<int> bytes,
+  });
+
+  Uint8List crateApiPqidPqIdentityKeySerialize({required PqIdentityKey that});
+
+  bool crateApiPqidPqIdentityKeyVerify({
+    required PqIdentityKey that,
+    required List<int> message,
+    required PqSignature signature,
+  });
+
+  PqSignature crateApiPqidPqSignatureDeserialize({required List<int> bytes});
+
+  Uint8List crateApiPqidPqSignatureSerialize({required PqSignature that});
+
   int crateApiBundlePreKeyBundleDeviceId({required PreKeyBundle that});
 
   Uint8List crateApiBundlePreKeyBundleIdentityKey({required PreKeyBundle that});
@@ -330,6 +367,18 @@ abstract class RustLibApi extends BaseApi {
     required List<int> kyberPreKeySignature,
   });
 
+  Uint8List? crateApiBundlePreKeyBundlePqIdentityKey({
+    required PreKeyBundle that,
+  });
+
+  Uint8List? crateApiBundlePreKeyBundlePqKemBindingDigest({
+    required PreKeyBundle that,
+  });
+
+  Uint8List? crateApiBundlePreKeyBundlePqSignature({
+    required PreKeyBundle that,
+  });
+
   int? crateApiBundlePreKeyBundlePreKeyId({required PreKeyBundle that});
 
   Uint8List? crateApiBundlePreKeyBundlePreKeyPublic({
@@ -346,6 +395,13 @@ abstract class RustLibApi extends BaseApi {
 
   Uint8List crateApiBundlePreKeyBundleSignedPreKeySignature({
     required PreKeyBundle that,
+  });
+
+  PreKeyBundle crateApiBundlePreKeyBundleWithPqIdentity({
+    required PreKeyBundle that,
+    required List<int> pqIdentityKey,
+    required List<int> pqSignature,
+    required List<int> kemBinding,
   });
 
   PreKeyRecord crateApiPrekeyPreKeyRecordDeserialize({
@@ -806,6 +862,20 @@ abstract class RustLibApi extends BaseApi {
     required FutureOr<Uint8List?> Function(String, int) getIdentity,
   });
 
+  Uint8List crateApiPqBundlePqBundleTranscript({
+    required List<int> identityKey,
+    required List<int> pqIdentityKey,
+    required int signedPreKeyId,
+    required List<int> signedPreKeyPublic,
+    required List<int> kemBinding,
+  });
+
+  Uint8List crateApiPqBundlePqKemBinding({
+    required int kemSignedPreKeyId,
+    required List<int> kemSignedPreKeyPublic,
+    required List<KemOneTimeKey> oneTime,
+  });
+
   Future<void> crateApiSessionBuilderProcessPrekeyBundleWithCallbacks({
     required String remoteName,
     required int remoteDeviceId,
@@ -997,6 +1067,32 @@ abstract class RustLibApi extends BaseApi {
 
   CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_PlaintextContentPtr;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_PqIdentityKey;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_PqIdentityKey;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_PqIdentityKeyPtr;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_PqIdentityKeyPair;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_PqIdentityKeyPair;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_PqIdentityKeyPairPtr;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_PqSignature;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_PqSignature;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_PqSignaturePtr;
 
   RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_PreKeyBundle;
@@ -2769,6 +2865,311 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
+  PqIdentityKeyPair crateApiPqidPqIdentityKeyPairDeserialize({
+    required List<int> bytes,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 = cst_encode_list_prim_u_8_loose(bytes);
+          return wire.wire__crate__api__pqid__PqIdentityKeyPair_deserialize(
+            arg0,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData:
+              dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqidPqIdentityKeyPairDeserializeConstMeta,
+        argValues: [bytes],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqidPqIdentityKeyPairDeserializeConstMeta =>
+      const TaskConstMeta(
+        debugName: "PqIdentityKeyPair_deserialize",
+        argNames: ["bytes"],
+      );
+
+  @override
+  PqIdentityKeyPair crateApiPqidPqIdentityKeyPairGenerate() {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          return wire.wire__crate__api__pqid__PqIdentityKeyPair_generate();
+        },
+        codec: DcoCodec(
+          decodeSuccessData:
+              dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqidPqIdentityKeyPairGenerateConstMeta,
+        argValues: [],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqidPqIdentityKeyPairGenerateConstMeta =>
+      const TaskConstMeta(
+        debugName: "PqIdentityKeyPair_generate",
+        argNames: [],
+      );
+
+  @override
+  PqIdentityKey crateApiPqidPqIdentityKeyPairPublicKey({
+    required PqIdentityKeyPair that,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 =
+              cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+                that,
+              );
+          return wire.wire__crate__api__pqid__PqIdentityKeyPair_public_key(
+            arg0,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData:
+              dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqidPqIdentityKeyPairPublicKeyConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqidPqIdentityKeyPairPublicKeyConstMeta =>
+      const TaskConstMeta(
+        debugName: "PqIdentityKeyPair_public_key",
+        argNames: ["that"],
+      );
+
+  @override
+  Uint8List crateApiPqidPqIdentityKeyPairSerialize({
+    required PqIdentityKeyPair that,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 =
+              cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+                that,
+              );
+          return wire.wire__crate__api__pqid__PqIdentityKeyPair_serialize(arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_list_prim_u_8_strict,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqidPqIdentityKeyPairSerializeConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqidPqIdentityKeyPairSerializeConstMeta =>
+      const TaskConstMeta(
+        debugName: "PqIdentityKeyPair_serialize",
+        argNames: ["that"],
+      );
+
+  @override
+  PqSignature crateApiPqidPqIdentityKeyPairSign({
+    required PqIdentityKeyPair that,
+    required List<int> message,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 =
+              cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+                that,
+              );
+          var arg1 = cst_encode_list_prim_u_8_loose(message);
+          return wire.wire__crate__api__pqid__PqIdentityKeyPair_sign(
+            arg0,
+            arg1,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData:
+              dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqidPqIdentityKeyPairSignConstMeta,
+        argValues: [that, message],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqidPqIdentityKeyPairSignConstMeta =>
+      const TaskConstMeta(
+        debugName: "PqIdentityKeyPair_sign",
+        argNames: ["that", "message"],
+      );
+
+  @override
+  PqIdentityKey crateApiPqidPqIdentityKeyDeserialize({
+    required List<int> bytes,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 = cst_encode_list_prim_u_8_loose(bytes);
+          return wire.wire__crate__api__pqid__PqIdentityKey_deserialize(arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData:
+              dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqidPqIdentityKeyDeserializeConstMeta,
+        argValues: [bytes],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqidPqIdentityKeyDeserializeConstMeta =>
+      const TaskConstMeta(
+        debugName: "PqIdentityKey_deserialize",
+        argNames: ["bytes"],
+      );
+
+  @override
+  Uint8List crateApiPqidPqIdentityKeySerialize({required PqIdentityKey that}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 =
+              cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+                that,
+              );
+          return wire.wire__crate__api__pqid__PqIdentityKey_serialize(arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_list_prim_u_8_strict,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqidPqIdentityKeySerializeConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqidPqIdentityKeySerializeConstMeta =>
+      const TaskConstMeta(
+        debugName: "PqIdentityKey_serialize",
+        argNames: ["that"],
+      );
+
+  @override
+  bool crateApiPqidPqIdentityKeyVerify({
+    required PqIdentityKey that,
+    required List<int> message,
+    required PqSignature signature,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 =
+              cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+                that,
+              );
+          var arg1 = cst_encode_list_prim_u_8_loose(message);
+          var arg2 =
+              cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+                signature,
+              );
+          return wire.wire__crate__api__pqid__PqIdentityKey_verify(
+            arg0,
+            arg1,
+            arg2,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_bool,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqidPqIdentityKeyVerifyConstMeta,
+        argValues: [that, message, signature],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqidPqIdentityKeyVerifyConstMeta =>
+      const TaskConstMeta(
+        debugName: "PqIdentityKey_verify",
+        argNames: ["that", "message", "signature"],
+      );
+
+  @override
+  PqSignature crateApiPqidPqSignatureDeserialize({required List<int> bytes}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 = cst_encode_list_prim_u_8_loose(bytes);
+          return wire.wire__crate__api__pqid__PqSignature_deserialize(arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData:
+              dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqidPqSignatureDeserializeConstMeta,
+        argValues: [bytes],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqidPqSignatureDeserializeConstMeta =>
+      const TaskConstMeta(
+        debugName: "PqSignature_deserialize",
+        argNames: ["bytes"],
+      );
+
+  @override
+  Uint8List crateApiPqidPqSignatureSerialize({required PqSignature that}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 =
+              cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+                that,
+              );
+          return wire.wire__crate__api__pqid__PqSignature_serialize(arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_list_prim_u_8_strict,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqidPqSignatureSerializeConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqidPqSignatureSerializeConstMeta =>
+      const TaskConstMeta(
+        debugName: "PqSignature_serialize",
+        argNames: ["that"],
+      );
+
+  @override
   int crateApiBundlePreKeyBundleDeviceId({required PreKeyBundle that}) {
     return handler.executeSync(
       SyncTask(
@@ -3007,6 +3408,101 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
+  Uint8List? crateApiBundlePreKeyBundlePqIdentityKey({
+    required PreKeyBundle that,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 =
+              cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
+                that,
+              );
+          return wire.wire__crate__api__bundle__PreKeyBundle_pq_identity_key(
+            arg0,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_opt_list_prim_u_8_strict,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiBundlePreKeyBundlePqIdentityKeyConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiBundlePreKeyBundlePqIdentityKeyConstMeta =>
+      const TaskConstMeta(
+        debugName: "PreKeyBundle_pq_identity_key",
+        argNames: ["that"],
+      );
+
+  @override
+  Uint8List? crateApiBundlePreKeyBundlePqKemBindingDigest({
+    required PreKeyBundle that,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 =
+              cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
+                that,
+              );
+          return wire
+              .wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest(
+                arg0,
+              );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_opt_list_prim_u_8_strict,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiBundlePreKeyBundlePqKemBindingDigestConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiBundlePreKeyBundlePqKemBindingDigestConstMeta =>
+      const TaskConstMeta(
+        debugName: "PreKeyBundle_pq_kem_binding_digest",
+        argNames: ["that"],
+      );
+
+  @override
+  Uint8List? crateApiBundlePreKeyBundlePqSignature({
+    required PreKeyBundle that,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 =
+              cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
+                that,
+              );
+          return wire.wire__crate__api__bundle__PreKeyBundle_pq_signature(arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_opt_list_prim_u_8_strict,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiBundlePreKeyBundlePqSignatureConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiBundlePreKeyBundlePqSignatureConstMeta =>
+      const TaskConstMeta(
+        debugName: "PreKeyBundle_pq_signature",
+        argNames: ["that"],
+      );
+
+  @override
   int? crateApiBundlePreKeyBundlePreKeyId({required PreKeyBundle that}) {
     return handler.executeSync(
       SyncTask(
@@ -3190,6 +3686,48 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       const TaskConstMeta(
         debugName: "PreKeyBundle_signed_pre_key_signature",
         argNames: ["that"],
+      );
+
+  @override
+  PreKeyBundle crateApiBundlePreKeyBundleWithPqIdentity({
+    required PreKeyBundle that,
+    required List<int> pqIdentityKey,
+    required List<int> pqSignature,
+    required List<int> kemBinding,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 =
+              cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
+                that,
+              );
+          var arg1 = cst_encode_list_prim_u_8_loose(pqIdentityKey);
+          var arg2 = cst_encode_list_prim_u_8_loose(pqSignature);
+          var arg3 = cst_encode_list_prim_u_8_loose(kemBinding);
+          return wire.wire__crate__api__bundle__PreKeyBundle_with_pq_identity(
+            arg0,
+            arg1,
+            arg2,
+            arg3,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData:
+              dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiBundlePreKeyBundleWithPqIdentityConstMeta,
+        argValues: [that, pqIdentityKey, pqSignature, kemBinding],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiBundlePreKeyBundleWithPqIdentityConstMeta =>
+      const TaskConstMeta(
+        debugName: "PreKeyBundle_with_pq_identity",
+        argNames: ["that", "pqIdentityKey", "pqSignature", "kemBinding"],
       );
 
   @override
@@ -6885,6 +7423,94 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
+  Uint8List crateApiPqBundlePqBundleTranscript({
+    required List<int> identityKey,
+    required List<int> pqIdentityKey,
+    required int signedPreKeyId,
+    required List<int> signedPreKeyPublic,
+    required List<int> kemBinding,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 = cst_encode_list_prim_u_8_loose(identityKey);
+          var arg1 = cst_encode_list_prim_u_8_loose(pqIdentityKey);
+          var arg2 = cst_encode_u_32(signedPreKeyId);
+          var arg3 = cst_encode_list_prim_u_8_loose(signedPreKeyPublic);
+          var arg4 = cst_encode_list_prim_u_8_loose(kemBinding);
+          return wire.wire__crate__api__pq_bundle__pq_bundle_transcript(
+            arg0,
+            arg1,
+            arg2,
+            arg3,
+            arg4,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_list_prim_u_8_strict,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqBundlePqBundleTranscriptConstMeta,
+        argValues: [
+          identityKey,
+          pqIdentityKey,
+          signedPreKeyId,
+          signedPreKeyPublic,
+          kemBinding,
+        ],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqBundlePqBundleTranscriptConstMeta =>
+      const TaskConstMeta(
+        debugName: "pq_bundle_transcript",
+        argNames: [
+          "identityKey",
+          "pqIdentityKey",
+          "signedPreKeyId",
+          "signedPreKeyPublic",
+          "kemBinding",
+        ],
+      );
+
+  @override
+  Uint8List crateApiPqBundlePqKemBinding({
+    required int kemSignedPreKeyId,
+    required List<int> kemSignedPreKeyPublic,
+    required List<KemOneTimeKey> oneTime,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 = cst_encode_u_32(kemSignedPreKeyId);
+          var arg1 = cst_encode_list_prim_u_8_loose(kemSignedPreKeyPublic);
+          var arg2 = cst_encode_list_kem_one_time_key(oneTime);
+          return wire.wire__crate__api__pq_bundle__pq_kem_binding(
+            arg0,
+            arg1,
+            arg2,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_list_prim_u_8_strict,
+          decodeErrorData: dco_decode_lib_signal_exception,
+        ),
+        constMeta: kCrateApiPqBundlePqKemBindingConstMeta,
+        argValues: [kemSignedPreKeyId, kemSignedPreKeyPublic, oneTime],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kCrateApiPqBundlePqKemBindingConstMeta =>
+      const TaskConstMeta(
+        debugName: "pq_kem_binding",
+        argNames: ["kemSignedPreKeyId", "kemSignedPreKeyPublic", "oneTime"],
+      );
+
+  @override
   Future<void> crateApiSessionBuilderProcessPrekeyBundleWithCallbacks({
     required String remoteName,
     required int remoteDeviceId,
@@ -8105,6 +8731,30 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent;
 
   RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_PqIdentityKey => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_PqIdentityKey => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_PqIdentityKeyPair => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_PqIdentityKeyPair => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_PqSignature => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_PqSignature => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature;
+
+  RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_PreKeyBundle => wire
       .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle;
 
@@ -8287,6 +8937,33 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   ) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return PlaintextContentImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  PqIdentityKey
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return PqIdentityKeyImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  PqIdentityKeyPair
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return PqIdentityKeyPairImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  PqSignature
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return PqSignatureImpl.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -8491,6 +9168,33 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   ) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return PlaintextContentImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  PqIdentityKey
+  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return PqIdentityKeyImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  PqIdentityKeyPair
+  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return PqIdentityKeyPairImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  PqSignature
+  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return PqSignatureImpl.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -8772,6 +9476,33 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  PqIdentityKey
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return PqIdentityKeyImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  PqIdentityKeyPair
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return PqIdentityKeyPairImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  PqSignature
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return PqSignatureImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   PreKeyBundle
   dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     dynamic raw,
@@ -8963,6 +9694,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  KemOneTimeKey dco_decode_kem_one_time_key(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+    return KemOneTimeKey(
+      id: dco_decode_u_32(arr[0]),
+      publicKey: dco_decode_list_prim_u_8_strict(arr[1]),
+    );
+  }
+
+  @protected
   LibSignalErrorCode dco_decode_lib_signal_error_code(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return LibSignalErrorCode.values[raw as int];
@@ -8984,6 +9727,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   List<String> dco_decode_list_String(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return (raw as List<dynamic>).map(dco_decode_String).toList();
+  }
+
+  @protected
+  List<KemOneTimeKey> dco_decode_list_kem_one_time_key(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return (raw as List<dynamic>).map(dco_decode_kem_one_time_key).toList();
   }
 
   @protected
@@ -9288,6 +10037,42 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  PqIdentityKey
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return PqIdentityKeyImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  PqIdentityKeyPair
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return PqIdentityKeyPairImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  PqSignature
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return PqSignatureImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
   PreKeyBundle
   sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     SseDeserializer deserializer,
@@ -9546,6 +10331,42 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return PlaintextContentImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  PqIdentityKey
+  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return PqIdentityKeyImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  PqIdentityKeyPair
+  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return PqIdentityKeyPairImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  PqSignature
+  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return PqSignatureImpl.frbInternalSseDecode(
       sse_decode_usize(deserializer),
       sse_decode_i_32(deserializer),
     );
@@ -9811,6 +10632,42 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  PqIdentityKey
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return PqIdentityKeyImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  PqIdentityKeyPair
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return PqIdentityKeyPairImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  PqSignature
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return PqSignatureImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
   PreKeyBundle
   sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     SseDeserializer deserializer,
@@ -10037,6 +10894,14 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  KemOneTimeKey sse_decode_kem_one_time_key(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_id = sse_decode_u_32(deserializer);
+    var var_publicKey = sse_decode_list_prim_u_8_strict(deserializer);
+    return KemOneTimeKey(id: var_id, publicKey: var_publicKey);
+  }
+
+  @protected
   LibSignalErrorCode sse_decode_lib_signal_error_code(
     SseDeserializer deserializer,
   ) {
@@ -10063,6 +10928,20 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     var ans_ = <String>[];
     for (var idx_ = 0; idx_ < len_; ++idx_) {
       ans_.add(sse_decode_String(deserializer));
+    }
+    return ans_;
+  }
+
+  @protected
+  List<KemOneTimeKey> sse_decode_list_kem_one_time_key(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var len_ = sse_decode_i_32(deserializer);
+    var ans_ = <KemOneTimeKey>[];
+    for (var idx_ = 0; idx_ < len_; ++idx_) {
+      ans_.add(sse_decode_kem_one_time_key(deserializer));
     }
     return ans_;
   }
@@ -10379,6 +11258,36 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as PqIdentityKeyImpl).frbInternalCstEncode(move: true);
+  }
+
+  @protected
+  int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as PqIdentityKeyPairImpl).frbInternalCstEncode(move: true);
+  }
+
+  @protected
+  int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as PqSignatureImpl).frbInternalCstEncode(move: true);
+  }
+
+  @protected
+  int
   cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     PreKeyBundle raw,
   ) {
@@ -10601,6 +11510,36 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Cst (C-struct based), see doc to use other codecs
     // ignore: invalid_use_of_internal_member
     return (raw as PlaintextContentImpl).frbInternalCstEncode(move: false);
+  }
+
+  @protected
+  int
+  cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as PqIdentityKeyImpl).frbInternalCstEncode(move: false);
+  }
+
+  @protected
+  int
+  cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as PqIdentityKeyPairImpl).frbInternalCstEncode(move: false);
+  }
+
+  @protected
+  int
+  cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as PqSignatureImpl).frbInternalCstEncode(move: false);
   }
 
   @protected
@@ -10938,6 +11877,36 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as PqIdentityKeyImpl).frbInternalCstEncode();
+  }
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as PqIdentityKeyPairImpl).frbInternalCstEncode();
+  }
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as PqSignatureImpl).frbInternalCstEncode();
+  }
+
+  @protected
+  int
   cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     PreKeyBundle raw,
   ) {
@@ -11214,6 +12183,45 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(
       (self as PlaintextContentImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as PqIdentityKeyImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as PqIdentityKeyPairImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as PqSignatureImpl).frbInternalSseEncode(move: true),
       serializer,
     );
   }
@@ -11504,6 +12512,45 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(
       (self as PlaintextContentImpl).frbInternalSseEncode(move: false),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as PqIdentityKeyImpl).frbInternalSseEncode(move: false),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as PqIdentityKeyPairImpl).frbInternalSseEncode(move: false),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as PqSignatureImpl).frbInternalSseEncode(move: false),
       serializer,
     );
   }
@@ -11928,6 +12975,45 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as PqIdentityKeyImpl).frbInternalSseEncode(move: null),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as PqIdentityKeyPairImpl).frbInternalSseEncode(move: null),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as PqSignatureImpl).frbInternalSseEncode(move: null),
+      serializer,
+    );
+  }
+
+  @protected
+  void
   sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     PreKeyBundle self,
     SseSerializer serializer,
@@ -12154,6 +13240,16 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_kem_one_time_key(
+    KemOneTimeKey self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_u_32(self.id, serializer);
+    sse_encode_list_prim_u_8_strict(self.publicKey, serializer);
+  }
+
+  @protected
   void sse_encode_lib_signal_error_code(
     LibSignalErrorCode self,
     SseSerializer serializer,
@@ -12178,6 +13274,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     sse_encode_i_32(self.length, serializer);
     for (final item in self) {
       sse_encode_String(item, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_list_kem_one_time_key(
+    List<KemOneTimeKey> self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.length, serializer);
+    for (final item in self) {
+      sse_encode_kem_one_time_key(item, serializer);
     }
   }
 
@@ -12824,6 +13932,102 @@ class PlaintextContentImpl extends RustOpaque implements PlaintextContent {
 }
 
 @sealed
+class PqIdentityKeyImpl extends RustOpaque implements PqIdentityKey {
+  // Not to be used by end users
+  PqIdentityKeyImpl.frbInternalDcoDecode(List<dynamic> wire)
+    : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  PqIdentityKeyImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_PqIdentityKey,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_PqIdentityKey,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_PqIdentityKeyPtr,
+  );
+
+  /// Serialize this verification key (2592 bytes).
+  Uint8List serialize() =>
+      RustLib.instance.api.crateApiPqidPqIdentityKeySerialize(that: this);
+
+  /// Verify `signature` over `message` under the PQ-OMEMO2 context.
+  bool verify({required List<int> message, required PqSignature signature}) =>
+      RustLib.instance.api.crateApiPqidPqIdentityKeyVerify(
+        that: this,
+        message: message,
+        signature: signature,
+      );
+}
+
+@sealed
+class PqIdentityKeyPairImpl extends RustOpaque implements PqIdentityKeyPair {
+  // Not to be used by end users
+  PqIdentityKeyPairImpl.frbInternalDcoDecode(List<dynamic> wire)
+    : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  PqIdentityKeyPairImpl.frbInternalSseDecode(
+    BigInt ptr,
+    int externalSizeOnNative,
+  ) : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_PqIdentityKeyPair,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_PqIdentityKeyPair,
+    rustArcDecrementStrongCountPtr: RustLib
+        .instance
+        .api
+        .rust_arc_decrement_strong_count_PqIdentityKeyPairPtr,
+  );
+
+  /// Public verification key.
+  PqIdentityKey publicKey() =>
+      RustLib.instance.api.crateApiPqidPqIdentityKeyPairPublicKey(that: this);
+
+  /// Serialize as signing-key bytes followed by verification-key bytes.
+  ///
+  /// # Security
+  /// The returned bytes contain the long-term signing key. The caller must
+  /// zero them when done.
+  Uint8List serialize() =>
+      RustLib.instance.api.crateApiPqidPqIdentityKeyPairSerialize(that: this);
+
+  /// Sign `message` under the PQ-OMEMO2 domain-separation context.
+  PqSignature sign({required List<int> message}) => RustLib.instance.api
+      .crateApiPqidPqIdentityKeyPairSign(that: this, message: message);
+}
+
+@sealed
+class PqSignatureImpl extends RustOpaque implements PqSignature {
+  // Not to be used by end users
+  PqSignatureImpl.frbInternalDcoDecode(List<dynamic> wire)
+    : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  PqSignatureImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+    : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_PqSignature,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_PqSignature,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_PqSignaturePtr,
+  );
+
+  /// Serialize this signature (4627 bytes).
+  Uint8List serialize() =>
+      RustLib.instance.api.crateApiPqidPqSignatureSerialize(that: this);
+}
+
+@sealed
 class PreKeyBundleImpl extends RustOpaque implements PreKeyBundle {
   // Not to be used by end users
   PreKeyBundleImpl.frbInternalDcoDecode(List<dynamic> wire)
@@ -12862,6 +14066,18 @@ class PreKeyBundleImpl extends RustOpaque implements PreKeyBundle {
   Uint8List kyberPreKeySignature() => RustLib.instance.api
       .crateApiBundlePreKeyBundleKyberPreKeySignature(that: this);
 
+  /// Serialized ML-DSA-87 identity public key, if a PQ identity is attached.
+  Uint8List? pqIdentityKey() =>
+      RustLib.instance.api.crateApiBundlePreKeyBundlePqIdentityKey(that: this);
+
+  /// The 64-byte ML-KEM binding digest, if a PQ identity is attached.
+  Uint8List? pqKemBindingDigest() => RustLib.instance.api
+      .crateApiBundlePreKeyBundlePqKemBindingDigest(that: this);
+
+  /// Serialized ML-DSA-87 bundle signature, if a PQ identity is attached.
+  Uint8List? pqSignature() =>
+      RustLib.instance.api.crateApiBundlePreKeyBundlePqSignature(that: this);
+
   /// Get the pre-key ID (returns None if no pre-key).
   int? preKeyId() =>
       RustLib.instance.api.crateApiBundlePreKeyBundlePreKeyId(that: this);
@@ -12885,6 +14101,23 @@ class PreKeyBundleImpl extends RustOpaque implements PreKeyBundle {
   /// Get the signed pre-key signature.
   Uint8List signedPreKeySignature() => RustLib.instance.api
       .crateApiBundlePreKeyBundleSignedPreKeySignature(that: this);
+
+  /// Attach a monocles PQ-OMEMO2 hybrid identity (ML-DSA-87 public key and its
+  /// signature over [`crate::api::pq_bundle::pq_bundle_transcript`]) together
+  /// with the 64-byte ML-KEM binding digest
+  /// ([`crate::api::pq_bundle::pq_kem_binding`]) recomputed from the fetched
+  /// bundle. When present, processing this bundle verifies the signature and
+  /// aborts on failure.
+  PreKeyBundle withPqIdentity({
+    required List<int> pqIdentityKey,
+    required List<int> pqSignature,
+    required List<int> kemBinding,
+  }) => RustLib.instance.api.crateApiBundlePreKeyBundleWithPqIdentity(
+    that: this,
+    pqIdentityKey: pqIdentityKey,
+    pqSignature: pqSignature,
+    kemBinding: kemBinding,
+  );
 }
 
 @sealed

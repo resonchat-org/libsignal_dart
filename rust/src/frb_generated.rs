@@ -33,6 +33,7 @@ use crate::api::crypto::*;
 use crate::api::keys::*;
 use crate::api::kyber::*;
 use crate::api::message::*;
+use crate::api::pqid::*;
 use crate::api::prekey::*;
 use crate::api::sealed_sender::*;
 use crate::api::session::*;
@@ -49,7 +50,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueNom,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.13.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1630330622;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1175889965;
 
 // Section: executor
 
@@ -1695,6 +1696,301 @@ fn wire__crate__api__message__PlaintextContent_serialize_impl(
         },
     )
 }
+fn wire__crate__api__pqid__PqIdentityKeyPair_deserialize_impl(
+    bytes: impl CstDecode<Vec<u8>>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PqIdentityKeyPair_deserialize",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_bytes = bytes.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let output_ok = crate::api::pqid::PqIdentityKeyPair::deserialize(api_bytes)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__pqid__PqIdentityKeyPair_generate_impl(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PqIdentityKeyPair_generate",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let output_ok = crate::api::pqid::PqIdentityKeyPair::generate()?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__pqid__PqIdentityKeyPair_public_key_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PqIdentityKeyPair_public_key",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = crate::api::pqid::PqIdentityKeyPair::public_key(&*api_that_guard)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__pqid__PqIdentityKeyPair_serialize_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PqIdentityKeyPair_serialize",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = crate::api::pqid::PqIdentityKeyPair::serialize(&*api_that_guard)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__pqid__PqIdentityKeyPair_sign_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>,
+    >,
+    message: impl CstDecode<Vec<u8>>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PqIdentityKeyPair_sign",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_message = message.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok =
+                    crate::api::pqid::PqIdentityKeyPair::sign(&*api_that_guard, api_message)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__pqid__PqIdentityKey_deserialize_impl(
+    bytes: impl CstDecode<Vec<u8>>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PqIdentityKey_deserialize",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_bytes = bytes.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let output_ok = crate::api::pqid::PqIdentityKey::deserialize(api_bytes)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__pqid__PqIdentityKey_serialize_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PqIdentityKey_serialize",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = crate::api::pqid::PqIdentityKey::serialize(&*api_that_guard)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__pqid__PqIdentityKey_verify_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>,
+    >,
+    message: impl CstDecode<Vec<u8>>,
+    signature: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PqIdentityKey_verify",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_message = message.cst_decode();
+            let api_signature = signature.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let mut api_that_guard = None;
+                let mut api_signature_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_signature,
+                            1,
+                            false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        1 => api_signature_guard = Some(api_signature.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let api_signature_guard = api_signature_guard.unwrap();
+                let output_ok = crate::api::pqid::PqIdentityKey::verify(
+                    &*api_that_guard,
+                    api_message,
+                    &*api_signature_guard,
+                )?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__pqid__PqSignature_deserialize_impl(
+    bytes: impl CstDecode<Vec<u8>>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PqSignature_deserialize",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_bytes = bytes.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let output_ok = crate::api::pqid::PqSignature::deserialize(api_bytes)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__pqid__PqSignature_serialize_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PqSignature_serialize",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = crate::api::pqid::PqSignature::serialize(&*api_that_guard)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
 fn wire__crate__api__bundle__PreKeyBundle_device_id_impl(
     that: impl CstDecode<
         RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PreKeyBundle>>,
@@ -1918,6 +2214,110 @@ fn wire__crate__api__bundle__PreKeyBundle_new_impl(
         },
     )
 }
+fn wire__crate__api__bundle__PreKeyBundle_pq_identity_key_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PreKeyBundle>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PreKeyBundle_pq_identity_key",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok =
+                    crate::api::bundle::PreKeyBundle::pq_identity_key(&*api_that_guard)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PreKeyBundle>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PreKeyBundle_pq_kem_binding_digest",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok =
+                    crate::api::bundle::PreKeyBundle::pq_kem_binding_digest(&*api_that_guard)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__bundle__PreKeyBundle_pq_signature_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PreKeyBundle>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PreKeyBundle_pq_signature",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = crate::api::bundle::PreKeyBundle::pq_signature(&*api_that_guard)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
 fn wire__crate__api__bundle__PreKeyBundle_pre_key_id_impl(
     that: impl CstDecode<
         RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PreKeyBundle>>,
@@ -2121,6 +2521,51 @@ fn wire__crate__api__bundle__PreKeyBundle_signed_pre_key_signature_impl(
                 let api_that_guard = api_that_guard.unwrap();
                 let output_ok =
                     crate::api::bundle::PreKeyBundle::signed_pre_key_signature(&*api_that_guard)?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__bundle__PreKeyBundle_with_pq_identity_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PreKeyBundle>>,
+    >,
+    pq_identity_key: impl CstDecode<Vec<u8>>,
+    pq_signature: impl CstDecode<Vec<u8>>,
+    kem_binding: impl CstDecode<Vec<u8>>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "PreKeyBundle_with_pq_identity",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_pq_identity_key = pq_identity_key.cst_decode();
+            let api_pq_signature = pq_signature.cst_decode();
+            let api_kem_binding = kem_binding.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = crate::api::bundle::PreKeyBundle::with_pq_identity(
+                    &*api_that_guard,
+                    api_pq_identity_key,
+                    api_pq_signature,
+                    api_kem_binding,
+                )?;
                 std::result::Result::Ok(output_ok)
             })())
         },
@@ -5624,6 +6069,64 @@ fn wire__crate__api__session_cipher__message_encrypt_with_callbacks_impl(
         },
     )
 }
+fn wire__crate__api__pq_bundle__pq_bundle_transcript_impl(
+    identity_key: impl CstDecode<Vec<u8>>,
+    pq_identity_key: impl CstDecode<Vec<u8>>,
+    signed_pre_key_id: impl CstDecode<u32>,
+    signed_pre_key_public: impl CstDecode<Vec<u8>>,
+    kem_binding: impl CstDecode<Vec<u8>>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "pq_bundle_transcript",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_identity_key = identity_key.cst_decode();
+            let api_pq_identity_key = pq_identity_key.cst_decode();
+            let api_signed_pre_key_id = signed_pre_key_id.cst_decode();
+            let api_signed_pre_key_public = signed_pre_key_public.cst_decode();
+            let api_kem_binding = kem_binding.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let output_ok = crate::api::pq_bundle::pq_bundle_transcript(
+                    api_identity_key,
+                    api_pq_identity_key,
+                    api_signed_pre_key_id,
+                    api_signed_pre_key_public,
+                    api_kem_binding,
+                )?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__pq_bundle__pq_kem_binding_impl(
+    kem_signed_pre_key_id: impl CstDecode<u32>,
+    kem_signed_pre_key_public: impl CstDecode<Vec<u8>>,
+    one_time: impl CstDecode<Vec<crate::api::pq_bundle::KemOneTimeKey>>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "pq_kem_binding",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_kem_signed_pre_key_id = kem_signed_pre_key_id.cst_decode();
+            let api_kem_signed_pre_key_public = kem_signed_pre_key_public.cst_decode();
+            let api_one_time = one_time.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LibSignalException>((move || {
+                let output_ok = crate::api::pq_bundle::pq_kem_binding(
+                    api_kem_signed_pre_key_id,
+                    api_kem_signed_pre_key_public,
+                    api_one_time,
+                )?;
+                std::result::Result::Ok(output_ok)
+            })())
+        },
+    )
+}
 fn wire__crate__api__session_builder__process_prekey_bundle_with_callbacks_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     remote_name: impl CstDecode<String>,
@@ -6594,6 +7097,36 @@ impl SseDecode for PlaintextContent {
     }
 }
 
+impl SseDecode for PqIdentityKey {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>,
+        >>::sse_decode(deserializer);
+        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+    }
+}
+
+impl SseDecode for PqIdentityKeyPair {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>,
+        >>::sse_decode(deserializer);
+        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+    }
+}
+
+impl SseDecode for PqSignature {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>,
+        >>::sse_decode(deserializer);
+        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+    }
+}
+
 impl SseDecode for PreKeyBundle {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -6817,6 +7350,36 @@ impl SseDecode
 }
 
 impl SseDecode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <usize>::sse_decode(deserializer);
+        return unsafe { decode_rust_opaque_nom(inner) };
+    }
+}
+
+impl SseDecode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <usize>::sse_decode(deserializer);
+        return unsafe { decode_rust_opaque_nom(inner) };
+    }
+}
+
+impl SseDecode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <usize>::sse_decode(deserializer);
+        return unsafe { decode_rust_opaque_nom(inner) };
+    }
+}
+
+impl SseDecode
     for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PreKeyBundle>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -7017,6 +7580,18 @@ impl SseDecode for isize {
     }
 }
 
+impl SseDecode for crate::api::pq_bundle::KemOneTimeKey {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <u32>::sse_decode(deserializer);
+        let mut var_publicKey = <Vec<u8>>::sse_decode(deserializer);
+        return crate::api::pq_bundle::KemOneTimeKey {
+            id: var_id,
+            public_key: var_publicKey,
+        };
+    }
+}
+
 impl SseDecode for crate::api::error::LibSignalErrorCode {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -7067,6 +7642,20 @@ impl SseDecode for Vec<String> {
         let mut ans_ = Vec::with_capacity(len_ as usize);
         for idx_ in 0..len_ {
             ans_.push(<String>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::api::pq_bundle::KemOneTimeKey> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::api::pq_bundle::KemOneTimeKey>::sse_decode(
+                deserializer,
+            ));
         }
         return ans_;
     }
@@ -7453,6 +8042,51 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<PlaintextContent>> for Plainte
 }
 
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<PqIdentityKey> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
+            .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<PqIdentityKey> {}
+
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<PqIdentityKey>> for PqIdentityKey {
+    fn into_into_dart(self) -> FrbWrapper<PqIdentityKey> {
+        self.into()
+    }
+}
+
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<PqIdentityKeyPair> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
+            .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<PqIdentityKeyPair> {}
+
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<PqIdentityKeyPair>> for PqIdentityKeyPair {
+    fn into_into_dart(self) -> FrbWrapper<PqIdentityKeyPair> {
+        self.into()
+    }
+}
+
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<PqSignature> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
+            .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<PqSignature> {}
+
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<PqSignature>> for PqSignature {
+    fn into_into_dart(self) -> FrbWrapper<PqSignature> {
+        self.into()
+    }
+}
+
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<PreKeyBundle> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
@@ -7731,6 +8365,27 @@ impl flutter_rust_bridge::IntoIntoDart<crate::api::group_session::GroupEncryptRe
     for crate::api::group_session::GroupEncryptResult
 {
     fn into_into_dart(self) -> crate::api::group_session::GroupEncryptResult {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::pq_bundle::KemOneTimeKey {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.public_key.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::pq_bundle::KemOneTimeKey
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::pq_bundle::KemOneTimeKey>
+    for crate::api::pq_bundle::KemOneTimeKey
+{
+    fn into_into_dart(self) -> crate::api::pq_bundle::KemOneTimeKey {
         self
     }
 }
@@ -8028,6 +8683,27 @@ impl SseEncode for PlaintextContent {
     }
 }
 
+impl SseEncode for PqIdentityKey {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self), serializer);
+    }
+}
+
+impl SseEncode for PqIdentityKeyPair {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self), serializer);
+    }
+}
+
+impl SseEncode for PqSignature {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self), serializer);
+    }
+}
+
 impl SseEncode for PreKeyBundle {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -8223,6 +8899,39 @@ impl SseEncode
 
 impl SseEncode
     for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PlaintextContent>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        let (ptr, size) = self.sse_encode_raw();
+        <usize>::sse_encode(ptr, serializer);
+        <i32>::sse_encode(size, serializer);
+    }
+}
+
+impl SseEncode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        let (ptr, size) = self.sse_encode_raw();
+        <usize>::sse_encode(ptr, serializer);
+        <i32>::sse_encode(size, serializer);
+    }
+}
+
+impl SseEncode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        let (ptr, size) = self.sse_encode_raw();
+        <usize>::sse_encode(ptr, serializer);
+        <i32>::sse_encode(size, serializer);
+    }
+}
+
+impl SseEncode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -8431,6 +9140,14 @@ impl SseEncode for isize {
     }
 }
 
+impl SseEncode for crate::api::pq_bundle::KemOneTimeKey {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <u32>::sse_encode(self.id, serializer);
+        <Vec<u8>>::sse_encode(self.public_key, serializer);
+    }
+}
+
 impl SseEncode for crate::api::error::LibSignalErrorCode {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -8480,6 +9197,16 @@ impl SseEncode for Vec<String> {
         <i32>::sse_encode(self.len() as _, serializer);
         for item in self {
             <String>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::api::pq_bundle::KemOneTimeKey> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::api::pq_bundle::KemOneTimeKey>::sse_encode(item, serializer);
         }
     }
 }
@@ -8666,6 +9393,7 @@ mod io {
     use crate::api::keys::*;
     use crate::api::kyber::*;
     use crate::api::message::*;
+    use crate::api::pqid::*;
     use crate::api::prekey::*;
     use crate::api::sealed_sender::*;
     use crate::api::session::*;
@@ -8791,6 +9519,40 @@ mod io {
                 RustOpaqueNom<
                     flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PlaintextContent>,
                 >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
+    impl CstDecode<PqIdentityKey> for usize {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> PqIdentityKey {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
+    impl CstDecode<PqIdentityKeyPair> for usize {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> PqIdentityKeyPair {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
+    impl CstDecode<PqSignature> for usize {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> PqSignature {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>,
             >::cst_decode(
                 self
             ))
@@ -9072,6 +9834,47 @@ mod io {
     }
     impl
         CstDecode<
+            RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>,
+        > for usize
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>
+        {
+            unsafe { decode_rust_opaque_nom(self as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>,
+            >,
+        > for usize
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>
+        {
+            unsafe { decode_rust_opaque_nom(self as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>,
+        > for usize
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>
+        {
+            unsafe { decode_rust_opaque_nom(self as _) }
+        }
+    }
+    impl
+        CstDecode<
             RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PreKeyBundle>>,
         > for usize
     {
@@ -9296,6 +10099,15 @@ mod io {
             }
         }
     }
+    impl CstDecode<crate::api::pq_bundle::KemOneTimeKey> for wire_cst_kem_one_time_key {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::pq_bundle::KemOneTimeKey {
+            crate::api::pq_bundle::KemOneTimeKey {
+                id: self.id.cst_decode(),
+                public_key: self.public_key.cst_decode(),
+            }
+        }
+    }
     impl CstDecode<crate::api::error::LibSignalException> for wire_cst_lib_signal_exception {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> crate::api::error::LibSignalException {
@@ -9308,6 +10120,16 @@ mod io {
     impl CstDecode<Vec<String>> for *mut wire_cst_list_String {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> Vec<String> {
+            let vec = unsafe {
+                let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+                flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+            };
+            vec.into_iter().map(CstDecode::cst_decode).collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::pq_bundle::KemOneTimeKey>> for *mut wire_cst_list_kem_one_time_key {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::pq_bundle::KemOneTimeKey> {
             let vec = unsafe {
                 let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
                 flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
@@ -9502,6 +10324,19 @@ mod io {
         }
     }
     impl Default for wire_cst_group_encrypt_result {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_kem_one_time_key {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                id: Default::default(),
+                public_key: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_kem_one_time_key {
         fn default() -> Self {
             Self::new_with_null_ptr()
         }
@@ -10011,6 +10846,78 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pqid__PqIdentityKeyPair_deserialize(
+        bytes: *mut wire_cst_list_prim_u_8_loose,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKeyPair_deserialize_impl(bytes)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pqid__PqIdentityKeyPair_generate(
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKeyPair_generate_impl()
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pqid__PqIdentityKeyPair_public_key(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKeyPair_public_key_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pqid__PqIdentityKeyPair_serialize(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKeyPair_serialize_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pqid__PqIdentityKeyPair_sign(
+        that: usize,
+        message: *mut wire_cst_list_prim_u_8_loose,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKeyPair_sign_impl(that, message)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pqid__PqIdentityKey_deserialize(
+        bytes: *mut wire_cst_list_prim_u_8_loose,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKey_deserialize_impl(bytes)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pqid__PqIdentityKey_serialize(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKey_serialize_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pqid__PqIdentityKey_verify(
+        that: usize,
+        message: *mut wire_cst_list_prim_u_8_loose,
+        signature: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKey_verify_impl(that, message, signature)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pqid__PqSignature_deserialize(
+        bytes: *mut wire_cst_list_prim_u_8_loose,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqSignature_deserialize_impl(bytes)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pqid__PqSignature_serialize(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqSignature_serialize_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_libsignal_wire__crate__api__bundle__PreKeyBundle_device_id(
         that: usize,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
@@ -10075,6 +10982,27 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__bundle__PreKeyBundle_pq_identity_key(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__bundle__PreKeyBundle_pq_identity_key_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__bundle__PreKeyBundle_pq_signature(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__bundle__PreKeyBundle_pq_signature_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_libsignal_wire__crate__api__bundle__PreKeyBundle_pre_key_id(
         that: usize,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
@@ -10114,6 +11042,21 @@ mod io {
         that: usize,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
         wire__crate__api__bundle__PreKeyBundle_signed_pre_key_signature_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__bundle__PreKeyBundle_with_pq_identity(
+        that: usize,
+        pq_identity_key: *mut wire_cst_list_prim_u_8_loose,
+        pq_signature: *mut wire_cst_list_prim_u_8_loose,
+        kem_binding: *mut wire_cst_list_prim_u_8_loose,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__bundle__PreKeyBundle_with_pq_identity_impl(
+            that,
+            pq_identity_key,
+            pq_signature,
+            kem_binding,
+        )
     }
 
     #[unsafe(no_mangle)]
@@ -11018,6 +11961,36 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pq_bundle__pq_bundle_transcript(
+        identity_key: *mut wire_cst_list_prim_u_8_loose,
+        pq_identity_key: *mut wire_cst_list_prim_u_8_loose,
+        signed_pre_key_id: u32,
+        signed_pre_key_public: *mut wire_cst_list_prim_u_8_loose,
+        kem_binding: *mut wire_cst_list_prim_u_8_loose,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pq_bundle__pq_bundle_transcript_impl(
+            identity_key,
+            pq_identity_key,
+            signed_pre_key_id,
+            signed_pre_key_public,
+            kem_binding,
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_wire__crate__api__pq_bundle__pq_kem_binding(
+        kem_signed_pre_key_id: u32,
+        kem_signed_pre_key_public: *mut wire_cst_list_prim_u_8_loose,
+        one_time: *mut wire_cst_list_kem_one_time_key,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pq_bundle__pq_kem_binding_impl(
+            kem_signed_pre_key_id,
+            kem_signed_pre_key_public,
+            one_time,
+        )
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_libsignal_wire__crate__api__session_builder__process_prekey_bundle_with_callbacks(
         port_: i64,
         remote_name: *mut wire_cst_list_prim_u_8_strict,
@@ -11416,6 +12389,60 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_libsignal_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
         ptr: *const std::ffi::c_void,
     ) {
@@ -11665,6 +12692,20 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_libsignal_cst_new_list_kem_one_time_key(
+        len: i32,
+    ) -> *mut wire_cst_list_kem_one_time_key {
+        let wrap = wire_cst_list_kem_one_time_key {
+            ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(
+                <wire_cst_kem_one_time_key>::new_with_null_ptr(),
+                len,
+            ),
+            len,
+        };
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(wrap)
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_libsignal_cst_new_list_multi_recipient_destination(
         len: i32,
     ) -> *mut wire_cst_list_multi_recipient_destination {
@@ -11754,6 +12795,12 @@ mod io {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
+    pub struct wire_cst_kem_one_time_key {
+        id: u32,
+        public_key: *mut wire_cst_list_prim_u_8_strict,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
     pub struct wire_cst_lib_signal_exception {
         code: i32,
         message: *mut wire_cst_list_prim_u_8_strict,
@@ -11762,6 +12809,12 @@ mod io {
     #[derive(Clone, Copy)]
     pub struct wire_cst_list_String {
         ptr: *mut *mut wire_cst_list_prim_u_8_strict,
+        len: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_list_kem_one_time_key {
+        ptr: *mut wire_cst_kem_one_time_key,
         len: i32,
     }
     #[repr(C)]
@@ -11865,6 +12918,7 @@ mod web {
     use crate::api::keys::*;
     use crate::api::kyber::*;
     use crate::api::message::*;
+    use crate::api::pqid::*;
     use crate::api::prekey::*;
     use crate::api::sealed_sender::*;
     use crate::api::session::*;
@@ -11983,6 +13037,26 @@ mod web {
             }
         }
     }
+    impl CstDecode<crate::api::pq_bundle::KemOneTimeKey>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::pq_bundle::KemOneTimeKey {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                2,
+                "Expected 2 elements, got {}",
+                self_.length()
+            );
+            crate::api::pq_bundle::KemOneTimeKey {
+                id: self_.get(0).cst_decode(),
+                public_key: self_.get(1).cst_decode(),
+            }
+        }
+    }
     impl CstDecode<crate::api::error::LibSignalException>
         for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
     {
@@ -12006,6 +13080,18 @@ mod web {
     impl CstDecode<Vec<String>> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> Vec<String> {
+            self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap()
+                .iter()
+                .map(CstDecode::cst_decode)
+                .collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::pq_bundle::KemOneTimeKey>>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::pq_bundle::KemOneTimeKey> {
             self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
                 .unwrap()
                 .iter()
@@ -12327,6 +13413,40 @@ mod web {
             ))
         }
     }
+    impl CstDecode<PqIdentityKey> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> PqIdentityKey {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
+    impl CstDecode<PqIdentityKeyPair> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> PqIdentityKeyPair {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
+    impl CstDecode<PqSignature> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> PqSignature {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
     impl CstDecode<PreKeyBundle> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> PreKeyBundle {
@@ -12627,6 +13747,59 @@ mod web {
         fn cst_decode(
             self,
         ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PlaintextContent>>
+        {
+            #[cfg(target_pointer_width = "64")]
+            {
+                compile_error!("64-bit pointers are not supported.");
+            }
+            unsafe { decode_rust_opaque_nom((self.as_f64().unwrap() as usize) as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>,
+        > for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>
+        {
+            #[cfg(target_pointer_width = "64")]
+            {
+                compile_error!("64-bit pointers are not supported.");
+            }
+            unsafe { decode_rust_opaque_nom((self.as_f64().unwrap() as usize) as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>,
+            >,
+        > for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>
+        {
+            #[cfg(target_pointer_width = "64")]
+            {
+                compile_error!("64-bit pointers are not supported.");
+            }
+            unsafe { decode_rust_opaque_nom((self.as_f64().unwrap() as usize) as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>,
+        > for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>
         {
             #[cfg(target_pointer_width = "64")]
             {
@@ -13313,6 +14486,78 @@ mod web {
     }
 
     #[wasm_bindgen]
+    pub fn wire__crate__api__pqid__PqIdentityKeyPair_deserialize(
+        bytes: Box<[u8]>,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKeyPair_deserialize_impl(bytes)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__pqid__PqIdentityKeyPair_generate(
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKeyPair_generate_impl()
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__pqid__PqIdentityKeyPair_public_key(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKeyPair_public_key_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__pqid__PqIdentityKeyPair_serialize(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKeyPair_serialize_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__pqid__PqIdentityKeyPair_sign(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        message: Box<[u8]>,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKeyPair_sign_impl(that, message)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__pqid__PqIdentityKey_deserialize(
+        bytes: Box<[u8]>,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKey_deserialize_impl(bytes)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__pqid__PqIdentityKey_serialize(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKey_serialize_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__pqid__PqIdentityKey_verify(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        message: Box<[u8]>,
+        signature: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqIdentityKey_verify_impl(that, message, signature)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__pqid__PqSignature_deserialize(
+        bytes: Box<[u8]>,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqSignature_deserialize_impl(bytes)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__pqid__PqSignature_serialize(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pqid__PqSignature_serialize_impl(that)
+    }
+
+    #[wasm_bindgen]
     pub fn wire__crate__api__bundle__PreKeyBundle_device_id(
         that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
@@ -13377,6 +14622,27 @@ mod web {
     }
 
     #[wasm_bindgen]
+    pub fn wire__crate__api__bundle__PreKeyBundle_pq_identity_key(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__bundle__PreKeyBundle_pq_identity_key_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__bundle__PreKeyBundle_pq_signature(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__bundle__PreKeyBundle_pq_signature_impl(that)
+    }
+
+    #[wasm_bindgen]
     pub fn wire__crate__api__bundle__PreKeyBundle_pre_key_id(
         that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
@@ -13416,6 +14682,21 @@ mod web {
         that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
         wire__crate__api__bundle__PreKeyBundle_signed_pre_key_signature_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__bundle__PreKeyBundle_with_pq_identity(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        pq_identity_key: Box<[u8]>,
+        pq_signature: Box<[u8]>,
+        kem_binding: Box<[u8]>,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__bundle__PreKeyBundle_with_pq_identity_impl(
+            that,
+            pq_identity_key,
+            pq_signature,
+            kem_binding,
+        )
     }
 
     #[wasm_bindgen]
@@ -14320,6 +15601,36 @@ mod web {
     }
 
     #[wasm_bindgen]
+    pub fn wire__crate__api__pq_bundle__pq_bundle_transcript(
+        identity_key: Box<[u8]>,
+        pq_identity_key: Box<[u8]>,
+        signed_pre_key_id: u32,
+        signed_pre_key_public: Box<[u8]>,
+        kem_binding: Box<[u8]>,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pq_bundle__pq_bundle_transcript_impl(
+            identity_key,
+            pq_identity_key,
+            signed_pre_key_id,
+            signed_pre_key_public,
+            kem_binding,
+        )
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__pq_bundle__pq_kem_binding(
+        kem_signed_pre_key_id: u32,
+        kem_signed_pre_key_public: Box<[u8]>,
+        one_time: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__pq_bundle__pq_kem_binding_impl(
+            kem_signed_pre_key_id,
+            kem_signed_pre_key_public,
+            one_time,
+        )
+    }
+
+    #[wasm_bindgen]
     pub fn wire__crate__api__session_builder__process_prekey_bundle_with_callbacks(
         port_: flutter_rust_bridge::for_generated::MessagePort,
         remote_name: String,
@@ -14714,6 +16025,60 @@ mod web {
     ) {
         unsafe {
             StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PlaintextContent>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKey>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqIdentityKeyPair>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PqSignature>>::decrement_strong_count(ptr as _);
         }
     }
 

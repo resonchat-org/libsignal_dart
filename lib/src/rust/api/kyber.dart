@@ -61,7 +61,7 @@ abstract class KyberKeyPair implements RustOpaqueInterface {
     secretKey: secretKey,
   );
 
-  /// Generate a new random Kyber key pair.
+  /// Generate a new random Kyber / ML-KEM key pair.
   static KyberKeyPair generate() =>
       RustLib.instance.api.crateApiKyberKyberKeyPairGenerate();
 

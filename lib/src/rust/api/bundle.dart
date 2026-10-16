@@ -7,7 +7,7 @@ import '../frb_generated.dart';
 import 'error.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These functions are ignored because they are not marked as `pub`: `from_native`, `native`
+// These functions are ignored because they are not marked as `pub`: `from_native`, `native`, `pq_identity`, `pq_kem_binding`
 
 // Rust type: RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PreKeyBundle>>
 abstract class PreKeyBundle implements RustOpaqueInterface {
@@ -66,6 +66,15 @@ abstract class PreKeyBundle implements RustOpaqueInterface {
     kyberPreKeySignature: kyberPreKeySignature,
   );
 
+  /// Serialized ML-DSA-87 identity public key, if a PQ identity is attached.
+  Uint8List? pqIdentityKey();
+
+  /// The 64-byte ML-KEM binding digest, if a PQ identity is attached.
+  Uint8List? pqKemBindingDigest();
+
+  /// Serialized ML-DSA-87 bundle signature, if a PQ identity is attached.
+  Uint8List? pqSignature();
+
   /// Get the pre-key ID (returns None if no pre-key).
   int? preKeyId();
 
@@ -83,4 +92,16 @@ abstract class PreKeyBundle implements RustOpaqueInterface {
 
   /// Get the signed pre-key signature.
   Uint8List signedPreKeySignature();
+
+  /// Attach a monocles PQ-OMEMO2 hybrid identity (ML-DSA-87 public key and its
+  /// signature over [`crate::api::pq_bundle::pq_bundle_transcript`]) together
+  /// with the 64-byte ML-KEM binding digest
+  /// ([`crate::api::pq_bundle::pq_kem_binding`]) recomputed from the fetched
+  /// bundle. When present, processing this bundle verifies the signature and
+  /// aborts on failure.
+  PreKeyBundle withPqIdentity({
+    required List<int> pqIdentityKey,
+    required List<int> pqSignature,
+    required List<int> kemBinding,
+  });
 }
