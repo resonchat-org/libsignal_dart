@@ -50,7 +50,13 @@ const _packageName = 'libsignal';
 const _assetId = 'libsignal';
 
 /// GitHub repository for downloading releases.
-const _githubRepo = 'djx-y-z/libsignal_dart';
+//
+// This fork adds bridge API (`pq_bundle`, `pqid`, ML-KEM-1024/ML-DSA-87) that
+// upstream does not have, so its `rustContentHash` differs from upstream's
+// released binaries. The hook must therefore fetch the fork's own
+// `libsignal_frb-<version>` release, not upstream's, or every consumer fails
+// the FRB content-hash sanity check at `LibSignal.init()`.
+const _githubRepo = 'resonchat-org/libsignal_dart';
 
 /// Rust crate name (used for library filenames and release tags).
 const _crateName = 'libsignal_frb';
