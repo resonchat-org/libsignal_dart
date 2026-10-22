@@ -69,4 +69,20 @@ class InMemorySessionStore implements SessionStore {
 
   /// Gets the number of stored sessions.
   int get length => _sessions.length;
+
+  /// Opaque records keyed the same way as [_key] (`name:deviceId`).
+  ///
+  /// The map stays in memory; callers persist the bytes (Conversations
+  /// `sessions.key`) and [importRecords] them after a restart.
+  Map<String, Uint8List> exportRecords() =>
+      Map<String, Uint8List>.of(_sessions);
+
+  void importRecords(Map<String, List<int>> records) {
+    _sessions
+      ..clear()
+      ..addAll({
+        for (final entry in records.entries)
+          entry.key: Uint8List.fromList(entry.value),
+      });
+  }
 }
