@@ -12,7 +12,7 @@ use libsignal_protocol::{
 ///
 /// Optionally carries a monocles PQ-OMEMO2 hybrid identity (`with_pq_identity`).
 /// When present, [`crate::api::session_builder::process_prekey_bundle_with_callbacks`]
-/// verifies the ML-DSA-87 signature over the v3 transcript before establishing
+/// verifies the ML-DSA-87 signature over the v4 transcript before establishing
 /// the session — matching monocles' patched `process_prekey_bundle`.
 pub struct PreKeyBundle {
     inner: NativePreKeyBundle,

@@ -166,8 +166,9 @@ fn process_prekey_bundle_inner(
     let their_identity_key = bundle.native().identity_key().map_err(LibSignalException::from)?;
 
     // monocles PQ-OMEMO2 hybrid identity: when the bundle carries a post-quantum
-    // identity, the ML-DSA-87 signature over the v3 transcript MUST verify.
+    // identity, the ML-DSA-87 signature over the v4 transcript MUST verify.
     // Stock libsignal has no such check; we enforce it here before PQXDH.
+    // (ik-sig is verified by the Dart establish path before with_pq_identity.)
     if let Some((pq_identity_key, pq_signature)) = bundle.pq_identity() {
         let kem_binding = bundle
             .pq_kem_binding()

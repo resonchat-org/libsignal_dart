@@ -7,8 +7,11 @@
 use crate::api::error::LibSignalException;
 use sha3::{Digest, Sha3_512};
 
-/// Domain-separation label for the v3 identity transcript.
-const PQ_BUNDLE_TRANSCRIPT_LABEL: &[u8] = b"monocles:omemo2:pq-bundle:v3";
+/// Domain-separation label for the v4 identity transcript (proto-XEP 0.0.13).
+///
+/// v4 is signed by both ML-DSA-87 and the classical IK (`<ik-sig>`). There is
+/// no compatibility shim: a v3 signature fails verification under this label.
+const PQ_BUNDLE_TRANSCRIPT_LABEL: &[u8] = b"monocles:omemo2:pq-bundle:v4";
 /// Domain-separation label for the ML-KEM binding digest.
 const PQ_KEM_BINDING_LABEL: &[u8] = b"monocles:omemo2:kem-binding:v2";
 const PQ_IDENTITY_ALGORITHM: &[u8] = b"ML-DSA-87";
@@ -157,5 +160,29 @@ mod tests {
             .map(|i| u8::from_str_radix(&EXPECTED[i..i + 2], 16).unwrap())
             .collect();
         assert_eq!(binding, expected);
+    }
+
+    /// proto-XEP §4.9.1: SHA3-512 of the v4 transcript bytes.
+    ///
+    /// IK = `0x05‖0x11×32`, PQ-IK = `0x22×2592`, signedPreKeyId = 7,
+    /// SPK = `0x05‖0x33×32`, KEM-BINDING = `0x44×64`.
+    #[test]
+    fn bundle_transcript_known_answer() {
+        let mut ik = vec![0x05];
+        ik.extend(std::iter::repeat(0x11u8).take(32));
+        let mut spk = vec![0x05];
+        spk.extend(std::iter::repeat(0x33u8).take(32));
+        let transcript =
+            pq_bundle_transcript(ik, filled(2592, 0x22), 7, spk, filled(64, 0x44)).unwrap();
+        let digest = Sha3_512::digest(&transcript);
+        const EXPECTED: &str = concat!(
+            "51006cbeb032541274a0222b2b2e6ef68250803ccd9f8921ffcd8a93b4be7028",
+            "dec4c46f0dfb1d50a3add5593871157dd0c1ce958d5aa35f320ffbdafcfd621a",
+        );
+        let expected: Vec<u8> = (0..EXPECTED.len())
+            .step_by(2)
+            .map(|i| u8::from_str_radix(&EXPECTED[i..i + 2], 16).unwrap())
+            .collect();
+        assert_eq!(digest.as_slice(), expected.as_slice());
     }
 }
