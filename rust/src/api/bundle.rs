@@ -1,25 +1,48 @@
 //! PreKey bundle API using libsignal-protocol.
 
 use crate::api::error::{LibSignalErrorCode, LibSignalException};
+use crate::api::pq_bundle::PQ_KEM_BINDING_LEN;
+use crate::api::pqid::{PqIdentityKey, PqSignature};
 use libsignal_protocol::{
     DeviceId, IdentityKey, KyberPreKeyId, PreKeyBundle as NativePreKeyBundle, PreKeyId,
     PublicKey as NativePublicKey, SignedPreKeyId, kem,
 };
 
 /// A pre-key bundle containing all the keys needed to establish a session.
+///
+/// Optionally carries a monocles PQ-OMEMO2 hybrid identity (`with_pq_identity`).
+/// When present, [`crate::api::session_builder::process_prekey_bundle_with_callbacks`]
+/// verifies the ML-DSA-87 signature over the v3 transcript before establishing
+/// the session — matching monocles' patched `process_prekey_bundle`.
 pub struct PreKeyBundle {
     inner: NativePreKeyBundle,
+    pq_identity: Option<(PqIdentityKey, PqSignature)>,
+    pq_kem_binding: Option<Vec<u8>>,
 }
 
 impl PreKeyBundle {
     /// Create from native libsignal PreKeyBundle.
     pub(crate) fn from_native(bundle: NativePreKeyBundle) -> Self {
-        Self { inner: bundle }
+        Self {
+            inner: bundle,
+            pq_identity: None,
+            pq_kem_binding: None,
+        }
     }
 
     /// Get the inner native bundle (for use by other modules).
     pub(crate) fn native(&self) -> &NativePreKeyBundle {
         &self.inner
+    }
+
+    /// Post-quantum identity + signature, if attached via [`Self::with_pq_identity`].
+    pub(crate) fn pq_identity(&self) -> Option<(&PqIdentityKey, &PqSignature)> {
+        self.pq_identity.as_ref().map(|(k, s)| (k, s))
+    }
+
+    /// ML-KEM binding digest attached with the PQ identity, if any.
+    pub(crate) fn pq_kem_binding(&self) -> Option<&[u8]> {
+        self.pq_kem_binding.as_deref()
     }
 
     /// Create a new pre-key bundle from serialized keys.
@@ -120,7 +143,63 @@ impl PreKeyBundle {
         )
         .map_err(LibSignalException::from)?;
 
-        Ok(PreKeyBundle { inner: native })
+        Ok(PreKeyBundle {
+            inner: native,
+            pq_identity: None,
+            pq_kem_binding: None,
+        })
+    }
+
+    /// Attach a monocles PQ-OMEMO2 hybrid identity (ML-DSA-87 public key and its
+    /// signature over [`crate::api::pq_bundle::pq_bundle_transcript`]) together
+    /// with the 64-byte ML-KEM binding digest
+    /// ([`crate::api::pq_bundle::pq_kem_binding`]) recomputed from the fetched
+    /// bundle. When present, processing this bundle verifies the signature and
+    /// aborts on failure.
+    #[flutter_rust_bridge::frb(sync)]
+    pub fn with_pq_identity(
+        &self,
+        pq_identity_key: Vec<u8>,
+        pq_signature: Vec<u8>,
+        kem_binding: Vec<u8>,
+    ) -> Result<PreKeyBundle, LibSignalException> {
+        if kem_binding.len() != PQ_KEM_BINDING_LEN {
+            return Err(LibSignalException::invalid_argument(format!(
+                "ML-KEM binding digest must be {PQ_KEM_BINDING_LEN} bytes, got {}",
+                kem_binding.len()
+            )));
+        }
+        let pq_key = PqIdentityKey::deserialize(pq_identity_key)?;
+        let pq_sig = PqSignature::deserialize(pq_signature)?;
+        Ok(PreKeyBundle {
+            inner: self.inner.clone(),
+            pq_identity: Some((pq_key, pq_sig)),
+            pq_kem_binding: Some(kem_binding),
+        })
+    }
+
+    /// Serialized ML-DSA-87 identity public key, if a PQ identity is attached.
+    #[flutter_rust_bridge::frb(sync)]
+    pub fn pq_identity_key(&self) -> Result<Option<Vec<u8>>, LibSignalException> {
+        match &self.pq_identity {
+            Some((key, _)) => Ok(Some(key.serialize()?)),
+            None => Ok(None),
+        }
+    }
+
+    /// Serialized ML-DSA-87 bundle signature, if a PQ identity is attached.
+    #[flutter_rust_bridge::frb(sync)]
+    pub fn pq_signature(&self) -> Result<Option<Vec<u8>>, LibSignalException> {
+        match &self.pq_identity {
+            Some((_, sig)) => Ok(Some(sig.serialize()?)),
+            None => Ok(None),
+        }
+    }
+
+    /// The 64-byte ML-KEM binding digest, if a PQ identity is attached.
+    #[flutter_rust_bridge::frb(sync)]
+    pub fn pq_kem_binding_digest(&self) -> Result<Option<Vec<u8>>, LibSignalException> {
+        Ok(self.pq_kem_binding.clone())
     }
 
     /// Get the registration ID.

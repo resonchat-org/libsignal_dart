@@ -57,6 +57,10 @@ docs/
 # Rust
 rust/target/
 
+# Local LLVM shim for `make codegen` when the host only has versioned
+# libclang-N.so (ffigen expects lib/libclang.so).
+.llvm_shim/
+
 # Python bytecode. The release and verification gates under scripts/ are
 # Python and are run as `python3 scripts/...`, so any local run leaves a
 # __pycache__ beside them that `git add -A` would otherwise sweep in.

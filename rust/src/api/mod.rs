@@ -39,6 +39,8 @@ pub mod init;
 pub mod keys;
 pub mod kyber;
 pub mod message;
+pub mod pq_bundle;
+pub mod pqid;
 pub mod prekey;
 pub mod sealed_sender;
 pub mod session;

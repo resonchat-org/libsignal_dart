@@ -73,6 +73,8 @@ export 'src/rust/api/group_session.dart';
 export 'src/rust/api/keys.dart';
 export 'src/rust/api/kyber.dart';
 export 'src/rust/api/message.dart';
+export 'src/rust/api/pq_bundle.dart';
+export 'src/rust/api/pqid.dart';
 export 'src/rust/api/prekey.dart';
 export 'src/rust/api/sealed_sender.dart';
 export 'src/rust/api/session.dart';

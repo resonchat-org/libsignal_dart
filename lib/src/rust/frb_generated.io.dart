@@ -12,6 +12,8 @@ import 'api/init.dart';
 import 'api/keys.dart';
 import 'api/kyber.dart';
 import 'api/message.dart';
+import 'api/pq_bundle.dart';
+import 'api/pqid.dart';
 import 'api/prekey.dart';
 import 'api/sealed_sender.dart';
 import 'api/session.dart';
@@ -67,6 +69,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_PlaintextContentPtr => wire
       ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContentPtr;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_PqIdentityKeyPtr => wire
+      ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPtr;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_PqIdentityKeyPairPtr => wire
+      ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPairPtr;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_PqSignaturePtr => wire
+      ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignaturePtr;
 
   CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_PreKeyBundlePtr => wire
@@ -170,6 +184,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   PlaintextContent
   dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
+    dynamic raw,
+  );
+
+  @protected
+  PqIdentityKey
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    dynamic raw,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    dynamic raw,
+  );
+
+  @protected
+  PqSignature
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
     dynamic raw,
   );
 
@@ -302,6 +334,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   PlaintextContent
   dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
+    dynamic raw,
+  );
+
+  @protected
+  PqIdentityKey
+  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    dynamic raw,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    dynamic raw,
+  );
+
+  @protected
+  PqSignature
+  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
     dynamic raw,
   );
 
@@ -485,6 +535,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  PqIdentityKey
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    dynamic raw,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    dynamic raw,
+  );
+
+  @protected
+  PqSignature
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    dynamic raw,
+  );
+
+  @protected
   PreKeyBundle
   dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     dynamic raw,
@@ -585,6 +653,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   PlatformInt64 dco_decode_isize(dynamic raw);
 
   @protected
+  KemOneTimeKey dco_decode_kem_one_time_key(dynamic raw);
+
+  @protected
   LibSignalErrorCode dco_decode_lib_signal_error_code(dynamic raw);
 
   @protected
@@ -592,6 +663,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   List<String> dco_decode_list_String(dynamic raw);
+
+  @protected
+  List<KemOneTimeKey> dco_decode_list_kem_one_time_key(dynamic raw);
 
   @protected
   List<MultiRecipientDestination> dco_decode_list_multi_recipient_destination(
@@ -716,6 +790,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   PlaintextContent
   sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqIdentityKey
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqSignature
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
     SseDeserializer deserializer,
   );
 
@@ -852,6 +944,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  PqIdentityKey
+  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqSignature
+  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   PreKeyBundle
   sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     SseDeserializer deserializer,
@@ -981,6 +1091,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  PqIdentityKey
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqSignature
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   PreKeyBundle
   sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     SseDeserializer deserializer,
@@ -1087,6 +1215,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   PlatformInt64 sse_decode_isize(SseDeserializer deserializer);
 
   @protected
+  KemOneTimeKey sse_decode_kem_one_time_key(SseDeserializer deserializer);
+
+  @protected
   LibSignalErrorCode sse_decode_lib_signal_error_code(
     SseDeserializer deserializer,
   );
@@ -1098,6 +1229,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   List<String> sse_decode_list_String(SseDeserializer deserializer);
+
+  @protected
+  List<KemOneTimeKey> sse_decode_list_kem_one_time_key(
+    SseDeserializer deserializer,
+  );
 
   @protected
   List<MultiRecipientDestination> sse_decode_list_multi_recipient_destination(
@@ -1206,6 +1342,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
     final ans = wire.cst_new_list_String(raw.length);
     for (var i = 0; i < raw.length; ++i) {
       ans.ref.ptr[i] = cst_encode_String(raw[i]);
+    }
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_kem_one_time_key> cst_encode_list_kem_one_time_key(
+    List<KemOneTimeKey> raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_kem_one_time_key(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      cst_api_fill_to_wire_kem_one_time_key(raw[i], ans.ref.ptr[i]);
     }
     return ans;
   }
@@ -1334,6 +1482,15 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
     wireObj.sender_key_record = cst_encode_list_prim_u_8_strict(
       apiObj.senderKeyRecord,
     );
+  }
+
+  @protected
+  void cst_api_fill_to_wire_kem_one_time_key(
+    KemOneTimeKey apiObj,
+    wire_cst_kem_one_time_key wireObj,
+  ) {
+    wireObj.id = cst_encode_u_32(apiObj.id);
+    wireObj.public_key = cst_encode_list_prim_u_8_strict(apiObj.publicKey);
   }
 
   @protected
@@ -1488,6 +1645,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature raw,
+  );
+
+  @protected
+  int
   cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     PreKeyBundle raw,
   );
@@ -1616,6 +1791,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   int
   cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
     PlaintextContent raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature raw,
   );
 
   @protected
@@ -1801,6 +1994,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey raw,
+  );
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair raw,
+  );
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature raw,
+  );
+
+  @protected
+  int
   cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     PreKeyBundle raw,
   );
@@ -1960,6 +2171,27 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
   sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     PreKeyBundle self,
     SseSerializer serializer,
@@ -2109,6 +2341,27 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void
   sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
     PlaintextContent self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature self,
     SseSerializer serializer,
   );
 
@@ -2324,6 +2577,27 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
   sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     PreKeyBundle self,
     SseSerializer serializer,
@@ -2443,6 +2717,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_isize(PlatformInt64 self, SseSerializer serializer);
 
   @protected
+  void sse_encode_kem_one_time_key(
+    KemOneTimeKey self,
+    SseSerializer serializer,
+  );
+
+  @protected
   void sse_encode_lib_signal_error_code(
     LibSignalErrorCode self,
     SseSerializer serializer,
@@ -2456,6 +2736,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_list_String(List<String> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_kem_one_time_key(
+    List<KemOneTimeKey> self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_list_multi_recipient_destination(
@@ -3513,6 +3799,197 @@ class RustLibWire implements BaseWire {
       _wire__crate__api__message__PlaintextContent_serializePtr
           .asFunction<WireSyncRust2DartDco Function(int)>();
 
+  WireSyncRust2DartDco wire__crate__api__pqid__PqIdentityKeyPair_deserialize(
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> bytes,
+  ) {
+    return _wire__crate__api__pqid__PqIdentityKeyPair_deserialize(bytes);
+  }
+
+  late final _wire__crate__api__pqid__PqIdentityKeyPair_deserializePtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+          )
+        >
+      >(
+        'frbgen_libsignal_wire__crate__api__pqid__PqIdentityKeyPair_deserialize',
+      );
+  late final _wire__crate__api__pqid__PqIdentityKeyPair_deserialize =
+      _wire__crate__api__pqid__PqIdentityKeyPair_deserializePtr
+          .asFunction<
+            WireSyncRust2DartDco Function(
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            )
+          >();
+
+  WireSyncRust2DartDco wire__crate__api__pqid__PqIdentityKeyPair_generate() {
+    return _wire__crate__api__pqid__PqIdentityKeyPair_generate();
+  }
+
+  late final _wire__crate__api__pqid__PqIdentityKeyPair_generatePtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function()>>(
+        'frbgen_libsignal_wire__crate__api__pqid__PqIdentityKeyPair_generate',
+      );
+  late final _wire__crate__api__pqid__PqIdentityKeyPair_generate =
+      _wire__crate__api__pqid__PqIdentityKeyPair_generatePtr
+          .asFunction<WireSyncRust2DartDco Function()>();
+
+  WireSyncRust2DartDco wire__crate__api__pqid__PqIdentityKeyPair_public_key(
+    int that,
+  ) {
+    return _wire__crate__api__pqid__PqIdentityKeyPair_public_key(that);
+  }
+
+  late final _wire__crate__api__pqid__PqIdentityKeyPair_public_keyPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+        'frbgen_libsignal_wire__crate__api__pqid__PqIdentityKeyPair_public_key',
+      );
+  late final _wire__crate__api__pqid__PqIdentityKeyPair_public_key =
+      _wire__crate__api__pqid__PqIdentityKeyPair_public_keyPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco wire__crate__api__pqid__PqIdentityKeyPair_serialize(
+    int that,
+  ) {
+    return _wire__crate__api__pqid__PqIdentityKeyPair_serialize(that);
+  }
+
+  late final _wire__crate__api__pqid__PqIdentityKeyPair_serializePtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+        'frbgen_libsignal_wire__crate__api__pqid__PqIdentityKeyPair_serialize',
+      );
+  late final _wire__crate__api__pqid__PqIdentityKeyPair_serialize =
+      _wire__crate__api__pqid__PqIdentityKeyPair_serializePtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco wire__crate__api__pqid__PqIdentityKeyPair_sign(
+    int that,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> message,
+  ) {
+    return _wire__crate__api__pqid__PqIdentityKeyPair_sign(that, message);
+  }
+
+  late final _wire__crate__api__pqid__PqIdentityKeyPair_signPtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(
+            ffi.UintPtr,
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+          )
+        >
+      >('frbgen_libsignal_wire__crate__api__pqid__PqIdentityKeyPair_sign');
+  late final _wire__crate__api__pqid__PqIdentityKeyPair_sign =
+      _wire__crate__api__pqid__PqIdentityKeyPair_signPtr
+          .asFunction<
+            WireSyncRust2DartDco Function(
+              int,
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            )
+          >();
+
+  WireSyncRust2DartDco wire__crate__api__pqid__PqIdentityKey_deserialize(
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> bytes,
+  ) {
+    return _wire__crate__api__pqid__PqIdentityKey_deserialize(bytes);
+  }
+
+  late final _wire__crate__api__pqid__PqIdentityKey_deserializePtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+          )
+        >
+      >('frbgen_libsignal_wire__crate__api__pqid__PqIdentityKey_deserialize');
+  late final _wire__crate__api__pqid__PqIdentityKey_deserialize =
+      _wire__crate__api__pqid__PqIdentityKey_deserializePtr
+          .asFunction<
+            WireSyncRust2DartDco Function(
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            )
+          >();
+
+  WireSyncRust2DartDco wire__crate__api__pqid__PqIdentityKey_serialize(
+    int that,
+  ) {
+    return _wire__crate__api__pqid__PqIdentityKey_serialize(that);
+  }
+
+  late final _wire__crate__api__pqid__PqIdentityKey_serializePtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+        'frbgen_libsignal_wire__crate__api__pqid__PqIdentityKey_serialize',
+      );
+  late final _wire__crate__api__pqid__PqIdentityKey_serialize =
+      _wire__crate__api__pqid__PqIdentityKey_serializePtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco wire__crate__api__pqid__PqIdentityKey_verify(
+    int that,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> message,
+    int signature,
+  ) {
+    return _wire__crate__api__pqid__PqIdentityKey_verify(
+      that,
+      message,
+      signature,
+    );
+  }
+
+  late final _wire__crate__api__pqid__PqIdentityKey_verifyPtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(
+            ffi.UintPtr,
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            ffi.UintPtr,
+          )
+        >
+      >('frbgen_libsignal_wire__crate__api__pqid__PqIdentityKey_verify');
+  late final _wire__crate__api__pqid__PqIdentityKey_verify =
+      _wire__crate__api__pqid__PqIdentityKey_verifyPtr
+          .asFunction<
+            WireSyncRust2DartDco Function(
+              int,
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              int,
+            )
+          >();
+
+  WireSyncRust2DartDco wire__crate__api__pqid__PqSignature_deserialize(
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> bytes,
+  ) {
+    return _wire__crate__api__pqid__PqSignature_deserialize(bytes);
+  }
+
+  late final _wire__crate__api__pqid__PqSignature_deserializePtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+          )
+        >
+      >('frbgen_libsignal_wire__crate__api__pqid__PqSignature_deserialize');
+  late final _wire__crate__api__pqid__PqSignature_deserialize =
+      _wire__crate__api__pqid__PqSignature_deserializePtr
+          .asFunction<
+            WireSyncRust2DartDco Function(
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            )
+          >();
+
+  WireSyncRust2DartDco wire__crate__api__pqid__PqSignature_serialize(int that) {
+    return _wire__crate__api__pqid__PqSignature_serialize(that);
+  }
+
+  late final _wire__crate__api__pqid__PqSignature_serializePtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+        'frbgen_libsignal_wire__crate__api__pqid__PqSignature_serialize',
+      );
+  late final _wire__crate__api__pqid__PqSignature_serialize =
+      _wire__crate__api__pqid__PqSignature_serializePtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
   WireSyncRust2DartDco wire__crate__api__bundle__PreKeyBundle_device_id(
     int that,
   ) {
@@ -3647,6 +4124,47 @@ class RustLibWire implements BaseWire {
             )
           >();
 
+  WireSyncRust2DartDco wire__crate__api__bundle__PreKeyBundle_pq_identity_key(
+    int that,
+  ) {
+    return _wire__crate__api__bundle__PreKeyBundle_pq_identity_key(that);
+  }
+
+  late final _wire__crate__api__bundle__PreKeyBundle_pq_identity_keyPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+        'frbgen_libsignal_wire__crate__api__bundle__PreKeyBundle_pq_identity_key',
+      );
+  late final _wire__crate__api__bundle__PreKeyBundle_pq_identity_key =
+      _wire__crate__api__bundle__PreKeyBundle_pq_identity_keyPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco
+  wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest(int that) {
+    return _wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest(that);
+  }
+
+  late final _wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digestPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+        'frbgen_libsignal_wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest',
+      );
+  late final _wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest =
+      _wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digestPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco wire__crate__api__bundle__PreKeyBundle_pq_signature(
+    int that,
+  ) {
+    return _wire__crate__api__bundle__PreKeyBundle_pq_signature(that);
+  }
+
+  late final _wire__crate__api__bundle__PreKeyBundle_pq_signaturePtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+        'frbgen_libsignal_wire__crate__api__bundle__PreKeyBundle_pq_signature',
+      );
+  late final _wire__crate__api__bundle__PreKeyBundle_pq_signature =
+      _wire__crate__api__bundle__PreKeyBundle_pq_signaturePtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
   WireSyncRust2DartDco wire__crate__api__bundle__PreKeyBundle_pre_key_id(
     int that,
   ) {
@@ -3730,6 +4248,44 @@ class RustLibWire implements BaseWire {
   late final _wire__crate__api__bundle__PreKeyBundle_signed_pre_key_signature =
       _wire__crate__api__bundle__PreKeyBundle_signed_pre_key_signaturePtr
           .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco wire__crate__api__bundle__PreKeyBundle_with_pq_identity(
+    int that,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> pq_identity_key,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> pq_signature,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> kem_binding,
+  ) {
+    return _wire__crate__api__bundle__PreKeyBundle_with_pq_identity(
+      that,
+      pq_identity_key,
+      pq_signature,
+      kem_binding,
+    );
+  }
+
+  late final _wire__crate__api__bundle__PreKeyBundle_with_pq_identityPtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(
+            ffi.UintPtr,
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+          )
+        >
+      >(
+        'frbgen_libsignal_wire__crate__api__bundle__PreKeyBundle_with_pq_identity',
+      );
+  late final _wire__crate__api__bundle__PreKeyBundle_with_pq_identity =
+      _wire__crate__api__bundle__PreKeyBundle_with_pq_identityPtr
+          .asFunction<
+            WireSyncRust2DartDco Function(
+              int,
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            )
+          >();
 
   WireSyncRust2DartDco wire__crate__api__prekey__PreKeyRecord_deserialize(
     ffi.Pointer<wire_cst_list_prim_u_8_loose> bytes,
@@ -5837,6 +6393,78 @@ class RustLibWire implements BaseWire {
             )
           >();
 
+  WireSyncRust2DartDco wire__crate__api__pq_bundle__pq_bundle_transcript(
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> identity_key,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> pq_identity_key,
+    int signed_pre_key_id,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> signed_pre_key_public,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> kem_binding,
+  ) {
+    return _wire__crate__api__pq_bundle__pq_bundle_transcript(
+      identity_key,
+      pq_identity_key,
+      signed_pre_key_id,
+      signed_pre_key_public,
+      kem_binding,
+    );
+  }
+
+  late final _wire__crate__api__pq_bundle__pq_bundle_transcriptPtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            ffi.Uint32,
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+          )
+        >
+      >('frbgen_libsignal_wire__crate__api__pq_bundle__pq_bundle_transcript');
+  late final _wire__crate__api__pq_bundle__pq_bundle_transcript =
+      _wire__crate__api__pq_bundle__pq_bundle_transcriptPtr
+          .asFunction<
+            WireSyncRust2DartDco Function(
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              int,
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            )
+          >();
+
+  WireSyncRust2DartDco wire__crate__api__pq_bundle__pq_kem_binding(
+    int kem_signed_pre_key_id,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> kem_signed_pre_key_public,
+    ffi.Pointer<wire_cst_list_kem_one_time_key> one_time,
+  ) {
+    return _wire__crate__api__pq_bundle__pq_kem_binding(
+      kem_signed_pre_key_id,
+      kem_signed_pre_key_public,
+      one_time,
+    );
+  }
+
+  late final _wire__crate__api__pq_bundle__pq_kem_bindingPtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(
+            ffi.Uint32,
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            ffi.Pointer<wire_cst_list_kem_one_time_key>,
+          )
+        >
+      >('frbgen_libsignal_wire__crate__api__pq_bundle__pq_kem_binding');
+  late final _wire__crate__api__pq_bundle__pq_kem_binding =
+      _wire__crate__api__pq_bundle__pq_kem_bindingPtr
+          .asFunction<
+            WireSyncRust2DartDco Function(
+              int,
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              ffi.Pointer<wire_cst_list_kem_one_time_key>,
+            )
+          >();
+
   void wire__crate__api__session_builder__process_prekey_bundle_with_callbacks(
     int port_,
     ffi.Pointer<wire_cst_list_prim_u_8_strict> remote_name,
@@ -6752,6 +7380,108 @@ class RustLibWire implements BaseWire {
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_libsignal_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey',
+      );
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_libsignal_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey',
+      );
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPairPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_libsignal_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair',
+      );
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPairPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPairPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_libsignal_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair',
+      );
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPairPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignaturePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_libsignal_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature',
+      );
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignaturePtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignaturePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_libsignal_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature',
+      );
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignaturePtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
   rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     ffi.Pointer<ffi.Void> ptr,
   ) {
@@ -7183,6 +7913,21 @@ class RustLibWire implements BaseWire {
   late final _cst_new_list_String = _cst_new_list_StringPtr
       .asFunction<ffi.Pointer<wire_cst_list_String> Function(int)>();
 
+  ffi.Pointer<wire_cst_list_kem_one_time_key> cst_new_list_kem_one_time_key(
+    int len,
+  ) {
+    return _cst_new_list_kem_one_time_key(len);
+  }
+
+  late final _cst_new_list_kem_one_time_keyPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_kem_one_time_key> Function(ffi.Int32)
+        >
+      >('frbgen_libsignal_cst_new_list_kem_one_time_key');
+  late final _cst_new_list_kem_one_time_key = _cst_new_list_kem_one_time_keyPtr
+      .asFunction<ffi.Pointer<wire_cst_list_kem_one_time_key> Function(int)>();
+
   ffi.Pointer<wire_cst_list_multi_recipient_destination>
   cst_new_list_multi_recipient_destination(int len) {
     return _cst_new_list_multi_recipient_destination(len);
@@ -7300,6 +8045,20 @@ final class wire_cst_list_prim_u_8_loose extends ffi.Struct {
 
 final class wire_cst_list_prim_u_8_strict extends ffi.Struct {
   external ffi.Pointer<ffi.Uint8> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_cst_kem_one_time_key extends ffi.Struct {
+  @ffi.Uint32()
+  external int id;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> public_key;
+}
+
+final class wire_cst_list_kem_one_time_key extends ffi.Struct {
+  external ffi.Pointer<wire_cst_kem_one_time_key> ptr;
 
   @ffi.Int32()
   external int len;
@@ -7437,3 +8196,11 @@ final class wire_cst_sealed_sender_v_2_sent_message extends ffi.Struct {
 
   external ffi.Pointer<wire_cst_list_sealed_sender_v_2_recipient> recipients;
 }
+
+const int PQ_KEM_BINDING_LEN = 64;
+
+const int PQ_IDENTITY_PUBLIC_KEY_LEN = 2592;
+
+const int PQ_IDENTITY_SECRET_KEY_LEN = 4896;
+
+const int PQ_IDENTITY_SIGNATURE_LEN = 4627;

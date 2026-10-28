@@ -15,6 +15,8 @@ import 'api/init.dart';
 import 'api/keys.dart';
 import 'api/kyber.dart';
 import 'api/message.dart';
+import 'api/pq_bundle.dart';
+import 'api/pqid.dart';
 import 'api/prekey.dart';
 import 'api/sealed_sender.dart';
 import 'api/session.dart';
@@ -69,6 +71,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_PlaintextContentPtr => wire
       .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_PqIdentityKeyPtr => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_PqIdentityKeyPairPtr => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_PqSignaturePtr => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature;
 
   CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_PreKeyBundlePtr => wire
@@ -172,6 +186,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   PlaintextContent
   dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
+    dynamic raw,
+  );
+
+  @protected
+  PqIdentityKey
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    dynamic raw,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    dynamic raw,
+  );
+
+  @protected
+  PqSignature
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
     dynamic raw,
   );
 
@@ -304,6 +336,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   PlaintextContent
   dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
+    dynamic raw,
+  );
+
+  @protected
+  PqIdentityKey
+  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    dynamic raw,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    dynamic raw,
+  );
+
+  @protected
+  PqSignature
+  dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
     dynamic raw,
   );
 
@@ -487,6 +537,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  PqIdentityKey
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    dynamic raw,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    dynamic raw,
+  );
+
+  @protected
+  PqSignature
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    dynamic raw,
+  );
+
+  @protected
   PreKeyBundle
   dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     dynamic raw,
@@ -587,6 +655,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   PlatformInt64 dco_decode_isize(dynamic raw);
 
   @protected
+  KemOneTimeKey dco_decode_kem_one_time_key(dynamic raw);
+
+  @protected
   LibSignalErrorCode dco_decode_lib_signal_error_code(dynamic raw);
 
   @protected
@@ -594,6 +665,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   List<String> dco_decode_list_String(dynamic raw);
+
+  @protected
+  List<KemOneTimeKey> dco_decode_list_kem_one_time_key(dynamic raw);
 
   @protected
   List<MultiRecipientDestination> dco_decode_list_multi_recipient_destination(
@@ -718,6 +792,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   PlaintextContent
   sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqIdentityKey
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqSignature
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
     SseDeserializer deserializer,
   );
 
@@ -854,6 +946,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  PqIdentityKey
+  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqSignature
+  sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   PreKeyBundle
   sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     SseDeserializer deserializer,
@@ -983,6 +1093,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  PqIdentityKey
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqIdentityKeyPair
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  PqSignature
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   PreKeyBundle
   sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     SseDeserializer deserializer,
@@ -1089,6 +1217,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   PlatformInt64 sse_decode_isize(SseDeserializer deserializer);
 
   @protected
+  KemOneTimeKey sse_decode_kem_one_time_key(SseDeserializer deserializer);
+
+  @protected
   LibSignalErrorCode sse_decode_lib_signal_error_code(
     SseDeserializer deserializer,
   );
@@ -1100,6 +1231,11 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   List<String> sse_decode_list_String(SseDeserializer deserializer);
+
+  @protected
+  List<KemOneTimeKey> sse_decode_list_kem_one_time_key(
+    SseDeserializer deserializer,
+  );
 
   @protected
   List<MultiRecipientDestination> sse_decode_list_multi_recipient_destination(
@@ -1239,6 +1375,15 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   }
 
   @protected
+  JSAny cst_encode_kem_one_time_key(KemOneTimeKey raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_u_32(raw.id),
+      cst_encode_list_prim_u_8_strict(raw.publicKey),
+    ].jsify()!;
+  }
+
+  @protected
   JSAny cst_encode_lib_signal_exception(LibSignalException raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return [
@@ -1251,6 +1396,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   JSAny cst_encode_list_String(List<String> raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw.map(cst_encode_String).toList().jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_list_kem_one_time_key(List<KemOneTimeKey> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw.map(cst_encode_kem_one_time_key).toList().jsify()!;
   }
 
   @protected
@@ -1444,6 +1595,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature raw,
+  );
+
+  @protected
+  int
   cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     PreKeyBundle raw,
   );
@@ -1572,6 +1741,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   int
   cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
     PlaintextContent raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature raw,
   );
 
   @protected
@@ -1757,6 +1944,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey raw,
+  );
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair raw,
+  );
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature raw,
+  );
+
+  @protected
+  int
   cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     PreKeyBundle raw,
   );
@@ -1916,6 +2121,27 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
   sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     PreKeyBundle self,
     SseSerializer serializer,
@@ -2065,6 +2291,27 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void
   sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
     PlaintextContent self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature self,
     SseSerializer serializer,
   );
 
@@ -2280,6 +2527,27 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    PqIdentityKey self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    PqIdentityKeyPair self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    PqSignature self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
   sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPreKeyBundle(
     PreKeyBundle self,
     SseSerializer serializer,
@@ -2399,6 +2667,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   void sse_encode_isize(PlatformInt64 self, SseSerializer serializer);
 
   @protected
+  void sse_encode_kem_one_time_key(
+    KemOneTimeKey self,
+    SseSerializer serializer,
+  );
+
+  @protected
   void sse_encode_lib_signal_error_code(
     LibSignalErrorCode self,
     SseSerializer serializer,
@@ -2412,6 +2686,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_list_String(List<String> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_kem_one_time_key(
+    List<KemOneTimeKey> self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_list_multi_recipient_destination(
@@ -2806,6 +3086,53 @@ class RustLibWire implements BaseWire {
       wasmModule.wire__crate__api__message__PlaintextContent_serialize(that);
 
   JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKeyPair_deserialize(JSAny bytes) =>
+      wasmModule.wire__crate__api__pqid__PqIdentityKeyPair_deserialize(bytes);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKeyPair_generate() =>
+      wasmModule.wire__crate__api__pqid__PqIdentityKeyPair_generate();
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKeyPair_public_key(int that) =>
+      wasmModule.wire__crate__api__pqid__PqIdentityKeyPair_public_key(that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKeyPair_serialize(int that) =>
+      wasmModule.wire__crate__api__pqid__PqIdentityKeyPair_serialize(that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKeyPair_sign(int that, JSAny message) =>
+      wasmModule.wire__crate__api__pqid__PqIdentityKeyPair_sign(that, message);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKey_deserialize(JSAny bytes) =>
+      wasmModule.wire__crate__api__pqid__PqIdentityKey_deserialize(bytes);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKey_serialize(int that) =>
+      wasmModule.wire__crate__api__pqid__PqIdentityKey_serialize(that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKey_verify(
+    int that,
+    JSAny message,
+    int signature,
+  ) => wasmModule.wire__crate__api__pqid__PqIdentityKey_verify(
+    that,
+    message,
+    signature,
+  );
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqSignature_deserialize(JSAny bytes) =>
+      wasmModule.wire__crate__api__pqid__PqSignature_deserialize(bytes);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqSignature_serialize(int that) =>
+      wasmModule.wire__crate__api__pqid__PqSignature_serialize(that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
   wire__crate__api__bundle__PreKeyBundle_device_id(int that) =>
       wasmModule.wire__crate__api__bundle__PreKeyBundle_device_id(that);
 
@@ -2857,6 +3184,20 @@ class RustLibWire implements BaseWire {
   );
 
   JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__bundle__PreKeyBundle_pq_identity_key(int that) =>
+      wasmModule.wire__crate__api__bundle__PreKeyBundle_pq_identity_key(that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest(int that) =>
+      wasmModule.wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest(
+        that,
+      );
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__bundle__PreKeyBundle_pq_signature(int that) =>
+      wasmModule.wire__crate__api__bundle__PreKeyBundle_pq_signature(that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
   wire__crate__api__bundle__PreKeyBundle_pre_key_id(int that) =>
       wasmModule.wire__crate__api__bundle__PreKeyBundle_pre_key_id(that);
 
@@ -2884,6 +3225,19 @@ class RustLibWire implements BaseWire {
           .wire__crate__api__bundle__PreKeyBundle_signed_pre_key_signature(
             that,
           );
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__bundle__PreKeyBundle_with_pq_identity(
+    int that,
+    JSAny pq_identity_key,
+    JSAny pq_signature,
+    JSAny kem_binding,
+  ) => wasmModule.wire__crate__api__bundle__PreKeyBundle_with_pq_identity(
+    that,
+    pq_identity_key,
+    pq_signature,
+    kem_binding,
+  );
 
   JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
   wire__crate__api__prekey__PreKeyRecord_deserialize(JSAny bytes) =>
@@ -3634,6 +3988,32 @@ class RustLibWire implements BaseWire {
         get_identity,
       );
 
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pq_bundle__pq_bundle_transcript(
+    JSAny identity_key,
+    JSAny pq_identity_key,
+    int signed_pre_key_id,
+    JSAny signed_pre_key_public,
+    JSAny kem_binding,
+  ) => wasmModule.wire__crate__api__pq_bundle__pq_bundle_transcript(
+    identity_key,
+    pq_identity_key,
+    signed_pre_key_id,
+    signed_pre_key_public,
+    kem_binding,
+  );
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pq_bundle__pq_kem_binding(
+    int kem_signed_pre_key_id,
+    JSAny kem_signed_pre_key_public,
+    JSAny one_time,
+  ) => wasmModule.wire__crate__api__pq_bundle__pq_kem_binding(
+    kem_signed_pre_key_id,
+    kem_signed_pre_key_public,
+    one_time,
+  );
+
   void wire__crate__api__session_builder__process_prekey_bundle_with_callbacks(
     NativePortType port_,
     String remote_name,
@@ -4005,6 +4385,54 @@ class RustLibWire implements BaseWire {
     int ptr,
   ) => wasmModule
       .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
+        ptr,
+      );
+
+  void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    int ptr,
+  ) => wasmModule
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+        ptr,
+      );
+
+  void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    int ptr,
+  ) => wasmModule
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+        ptr,
+      );
+
+  void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    int ptr,
+  ) => wasmModule
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+        ptr,
+      );
+
+  void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    int ptr,
+  ) => wasmModule
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+        ptr,
+      );
+
+  void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    int ptr,
+  ) => wasmModule
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+        ptr,
+      );
+
+  void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    int ptr,
+  ) => wasmModule
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
         ptr,
       );
 
@@ -4398,6 +4826,40 @@ extension type RustLibWasmModule._(JSObject _) implements JSObject {
   wire__crate__api__message__PlaintextContent_serialize(int that);
 
   external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKeyPair_deserialize(JSAny bytes);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKeyPair_generate();
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKeyPair_public_key(int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKeyPair_serialize(int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKeyPair_sign(int that, JSAny message);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKey_deserialize(JSAny bytes);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKey_serialize(int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqIdentityKey_verify(
+    int that,
+    JSAny message,
+    int signature,
+  );
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqSignature_deserialize(JSAny bytes);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pqid__PqSignature_serialize(int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
   wire__crate__api__bundle__PreKeyBundle_device_id(int that);
 
   external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
@@ -4428,6 +4890,15 @@ extension type RustLibWasmModule._(JSObject _) implements JSObject {
   );
 
   external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__bundle__PreKeyBundle_pq_identity_key(int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__bundle__PreKeyBundle_pq_kem_binding_digest(int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__bundle__PreKeyBundle_pq_signature(int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
   wire__crate__api__bundle__PreKeyBundle_pre_key_id(int that);
 
   external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
@@ -4444,6 +4915,14 @@ extension type RustLibWasmModule._(JSObject _) implements JSObject {
 
   external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
   wire__crate__api__bundle__PreKeyBundle_signed_pre_key_signature(int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__bundle__PreKeyBundle_with_pq_identity(
+    int that,
+    JSAny pq_identity_key,
+    JSAny pq_signature,
+    JSAny kem_binding,
+  );
 
   external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
   wire__crate__api__prekey__PreKeyRecord_deserialize(JSAny bytes);
@@ -4892,6 +5371,22 @@ extension type RustLibWasmModule._(JSObject _) implements JSObject {
     PlatformPointer get_identity,
   );
 
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pq_bundle__pq_bundle_transcript(
+    JSAny identity_key,
+    JSAny pq_identity_key,
+    int signed_pre_key_id,
+    JSAny signed_pre_key_public,
+    JSAny kem_binding,
+  );
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+  wire__crate__api__pq_bundle__pq_kem_binding(
+    int kem_signed_pre_key_id,
+    JSAny kem_signed_pre_key_public,
+    JSAny one_time,
+  );
+
   external void
   wire__crate__api__session_builder__process_prekey_bundle_with_callbacks(
     NativePortType port_,
@@ -5110,6 +5605,36 @@ extension type RustLibWasmModule._(JSObject _) implements JSObject {
 
   external void
   rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPlaintextContent(
+    int ptr,
+  );
+
+  external void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    int ptr,
+  );
+
+  external void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKey(
+    int ptr,
+  );
+
+  external void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    int ptr,
+  );
+
+  external void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqIdentityKeyPair(
+    int ptr,
+  );
+
+  external void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
+    int ptr,
+  );
+
+  external void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPqSignature(
     int ptr,
   );
 

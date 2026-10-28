@@ -19,13 +19,19 @@ log = "0.4"
 rand = "0.9"
 
 # Official Signal Protocol libraries (AGPL-3.0)
-libsignal-protocol = { git = "https://github.com/signalapp/libsignal", tag = "v0.106.0" }
+libsignal-protocol = { git = "https://github.com/signalapp/libsignal", tag = "v0.106.0", features = ["mlkem1024"] }
 libsignal-core = { git = "https://github.com/signalapp/libsignal", tag = "v0.106.0" }
 
 # Cryptographic primitives
 hkdf = "0.13"
 sha2 = "0.11"
+sha3 = "0.10"
 aes-gcm-siv = "0.12"
+
+# monocles PQ-OMEMO2 hybrid identity (ML-DSA-87). Same crate/version as the
+# monocles patched libsignal `pqid` module; stock signalapp/libsignal does not
+# ship this surface, so we host it in the FRB wrapper.
+libcrux-ml-dsa = { version = "0.0.10", default-features = false, features = ["std", "mldsa87"] }
 
 # Secure memory zeroing
 zeroize = "1.7"

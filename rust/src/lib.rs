@@ -21,6 +21,8 @@ mod utils;
 // `api/`, which FRB codegen scans. Run with `make rust-test`.
 #[cfg(test)]
 mod ssv2_equivalence_tests;
+#[cfg(test)]
+mod pq_process_tests;
 
 // Differential tests for the session entry points against libsignal's own API,
 // step by step. Outside `api/` for the same reason.

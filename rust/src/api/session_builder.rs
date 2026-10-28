@@ -17,6 +17,8 @@ use rand::{rngs::OsRng, TryRngCore as _};
 use zeroize::Zeroizing;
 
 use super::bundle::PreKeyBundle;
+use super::pq_bundle::{pq_bundle_transcript_slices, PQ_KEM_BINDING_LEN};
+use crate::api::error::LibSignalErrorCode;
 
 /// Result of processing a pre-key bundle.
 pub struct ProcessPreKeyBundleResult {
@@ -162,6 +164,45 @@ fn process_prekey_bundle_inner(
 
     // Get their identity key before processing
     let their_identity_key = bundle.native().identity_key().map_err(LibSignalException::from)?;
+
+    // monocles PQ-OMEMO2 hybrid identity: when the bundle carries a post-quantum
+    // identity, the ML-DSA-87 signature over the v3 transcript MUST verify.
+    // Stock libsignal has no such check; we enforce it here before PQXDH.
+    if let Some((pq_identity_key, pq_signature)) = bundle.pq_identity() {
+        let kem_binding = bundle
+            .pq_kem_binding()
+            .filter(|b| b.len() == PQ_KEM_BINDING_LEN)
+            .ok_or_else(|| {
+                LibSignalException::new(
+                    LibSignalErrorCode::InvalidSignature,
+                    "PQ identity requires a 64-byte ML-KEM binding digest",
+                )
+            })?;
+        let signed_pre_key_id = bundle
+            .native()
+            .signed_pre_key_id()
+            .map_err(LibSignalException::from)?;
+        let signed_pre_key_public = bundle
+            .native()
+            .signed_pre_key_public()
+            .map_err(LibSignalException::from)?;
+        let transcript = pq_bundle_transcript_slices(
+            &their_identity_key.serialize(),
+            &pq_identity_key.serialize()?,
+            signed_pre_key_id.into(),
+            &signed_pre_key_public.serialize(),
+            kem_binding,
+        );
+        let ok = pq_identity_key
+            .verify(transcript, pq_signature)
+            .map_err(LibSignalException::from)?;
+        if !ok {
+            return Err(LibSignalException::new(
+                LibSignalErrorCode::InvalidSignature,
+                "PQ identity signature validation failed",
+            ));
+        }
+    }
 
     // Call the libsignal process_prekey_bundle
     block_on(async {

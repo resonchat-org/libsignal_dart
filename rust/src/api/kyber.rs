@@ -124,11 +124,10 @@ impl KyberKeyPair {
         &self.inner
     }
 
-    /// Generate a new random Kyber key pair.
+    /// Generate a new random Kyber / ML-KEM key pair.
     #[flutter_rust_bridge::frb(sync)]
     pub fn generate() -> Result<KyberKeyPair, LibSignalException> {
-        // Default to Kyber1024 for post-quantum security
-        let native = NativeKeyPair::generate(KeyType::Kyber1024, &mut OsRng.unwrap_err());
+        let native = NativeKeyPair::generate(KeyType::MLKEM1024, &mut OsRng.unwrap_err());
         Ok(KyberKeyPair { inner: native })
     }
 
